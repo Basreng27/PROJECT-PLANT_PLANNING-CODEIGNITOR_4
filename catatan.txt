@@ -1,0 +1,2 @@
+filter berdasarkan musim
+atau bulan jika di paksakan dengan musim yang berbeda ada notifikasi
