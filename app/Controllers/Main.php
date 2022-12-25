@@ -26,12 +26,12 @@ class Main extends BaseController
 
     public function tanaman()
     {
-        // $data = [
-        //     'data_products' => $this->ProductModel->findAll(),
-        //     'set' => $this->Set_dashboardModel->find(1)
-        // ];
+        $data = [
+            // 'data_products' => $this->ProductModel->findAll(),
+            // 'set' => $this->Set_dashboardModel->find(1)
+        ];
 
-        return view('Pages/User/tanaman');
+        return view('Pages/User/tanaman', $data);
     }
 
     public function article()

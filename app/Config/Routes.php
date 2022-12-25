@@ -41,8 +41,9 @@ $routes->get('/admin-admin', 'Admin\Admins::admin');
 $routes->get('/admin-nomor', 'Admin\Admins::nomor');
 $routes->get('/admin-set-dashboard', 'Admin\Admins::setDashboard');
 $routes->get('/admin-pesanan', 'Admin\Admins::pesanan');
-// // product
-// $routes->post('/tambah-product', 'Admin\Product::prosesTambahProduct');
+// tanaman
+$routes->post('/tambah-tanaman', 'Admin\Tanamans::prosesTambahTanaman');
+$routes->post('/tambah-artikel', 'Admin\Artikels::prosesTambahArtikel');
 // $routes->post('/update-product', 'Admin\Product::prosesUpdateProduct');
 // // $routes->delete('/delete-product/(:any)', 'Admin\Product::deleteProduct/$1');
 // $routes->post('/delete-product', 'Admin\Product::deleteProduct');

@@ -34,7 +34,11 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
+        <?php
+        $tmn = new App\Models\Tanamans_model;
 
+        $dt = $tmn->tanamanXartikelXbudidaya();
+        ?>
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -61,7 +65,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="/admin-madu" class="nav-link">
+                            <a href="/admin" class=" nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -248,7 +252,10 @@
     <script>
         $(function() {
             // Summernote
-            $('#summernote').summernote()
+            <?php foreach ($dt as $data) : ?>
+                // console.log('#summernote')
+                $('#summernote<?= $data['id_tanaman_tanaman']; ?>').summernote()
+            <?php endforeach ?>
 
             // CodeMirror
             CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {

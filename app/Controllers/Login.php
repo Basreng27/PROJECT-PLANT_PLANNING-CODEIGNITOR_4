@@ -2,24 +2,24 @@
 
 namespace App\Controllers;
 
-// use App\Models\Admins_model;
+use App\Models\Admins_model;
 
 class Login extends BaseController
 {
-    // protected $AdminsModel;
+    protected $AdminsModel;
 
-    // public function __construct()
-    // {
-    //     $this->AdminsModel = new Admins_model();
-    // }
+    public function __construct()
+    {
+        $this->AdminsModel = new Admins_model();
+    }
 
     public function index()
     {
-        // $data = [
-        //     'validation' => \Config\Services::validation(),
-        //     'set' => $this->Set_dashboardModel->find(1)
-        // ];
-        return view('Pages/Static/login_regist/login');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            // 'set' => $this->Set_dashboardModel->find(1)
+        ];
+        return view('Pages/Static/login_regist/login', $data);
     }
 
     public function prosesLogin()
@@ -44,8 +44,9 @@ class Login extends BaseController
         $username = $this->request->getVar('username');
         $password = md5($this->request->getVar('password'));
 
-        $cekLogin = $this->AdminsModel->getAdmin($username, $password);
+        $cekLogin = $this->AdminsModel->where(['username' => $username, 'password' => $password])->first();
         if (empty($cekLogin)) {
+            //login user belum di setting
             $cekLoginUser = $this->UsersModel->getUser($username, $password);
             if (empty($cekLoginUser)) {
                 session()->setFlashdata('gagal', 'Password atau Username salah');
@@ -63,16 +64,14 @@ class Login extends BaseController
             }
         } else {
             $data_session = array(
-                'nama' => $cekLogin['nama'],
+                'nama_admin' => $cekLogin['nama_admin'],
                 'username' => $cekLogin['username'],
                 'stat' => "login-admin"
             );
             session()->set($data_session);
 
-            return redirect()->to('/admin-madu');
+            return redirect()->to('/admin');
         }
-
-        return redirect()->to('/admin-madu');
     }
 
     public function logout()

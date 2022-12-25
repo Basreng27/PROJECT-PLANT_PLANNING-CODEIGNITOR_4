@@ -24,9 +24,9 @@
 
             <form class="card card-md" action="/login-proses" method="POST">
                 <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Login ke Akun yang telah dimiliki</h2>
+                    <h2 class="card-title text-center mb-4">Login</h2>
 
-                    <?php /*if (session()->getFlashdata('berhasil')) { ?>
+                    <?php if (session()->getFlashdata('berhasil')) { ?>
                         <div class="alert alert-success" role="alert">
                             Akun berhasil ditambahkan, silahkan melakukan login dengn akun yang telah terdaftar
                         </div>
@@ -36,20 +36,18 @@
                         <div class="alert alert-danger" role="alert">
                             Password atau Username <strong>salah</strong>, silahkan cobalagi
                         </div>
-                    <?php }*/ ?>
+                    <?php } ?>
 
                     <div class="mb-3">
                         <label class="form-label">Username</label>
-                        <!-- <input type="text" class="form-control <?php /* ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" name="username" value="<?= old('username'); */ ?>" placeholder="Username" autofocus> -->
-                        <input type="text" class="form-control" name="username" value="<?= old('username'); ?>" placeholder="Username" autofocus>
-                        <!-- <div class="invalid-feedback"><?php /* $validation->getError('username'); */ ?></div> -->
+                        <input type="text" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" name="username" value="<?= old('username');  ?>" placeholder="Username" autofocus>
+                        <div class="invalid-feedback"><?= $validation->getError('username');  ?></div>
                     </div>
 
                     <div class="mb-2">
                         <label class="form-label">Password</label>
-                        <!-- <input type="password" class="form-control <?php /* ($validation->hasError('password')) ? 'is-invalid' : ''; */ ?>" name="password" placeholder="Password"> -->
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                        <!-- <div class="invalid-feedback"><?php /*$validation->getError('password');*/ ?></div> -->
+                        <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : '';  ?>" name="password" placeholder="Password">
+                        <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
                     </div>
 
                     <div class="form-footer">

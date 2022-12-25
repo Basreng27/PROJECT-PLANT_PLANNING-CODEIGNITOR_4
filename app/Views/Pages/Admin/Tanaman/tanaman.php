@@ -3,19 +3,17 @@
 <?= $this->section('content_admin'); ?>
 
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Tanaman</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.content-header -->
 
-    <?php /*if (session()->getFlashdata('berhasil')) { ?>
+    <?php if (session()->getFlashdata('berhasil')) { ?>
         <div class="alert alert-success" role="alert">
             Product Berhasil ditambahkan
         </div>
@@ -37,12 +35,10 @@
         <div class="alert alert-danger" role="alert">
             Product gagal ditambahkan
         </div>
-    <?php } */ ?>
+    <?php }  ?>
 
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -53,7 +49,6 @@
                             </button>
                         </div>
 
-                        <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -62,37 +57,50 @@
                                         <th>Nama Tanaman</th>
                                         <th>Image</th>
                                         <th>Waktu</th>
+                                        <th>Musim</th>
                                         <th>Article</th>
                                         <th>Cara Budidaya</th>
+                                        <th>Keterangan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Buah</td>
-                                        <td><img src="/tanam/tanaman1.jpg" class="image" width="80" height="60"></td>
-                                        <td>4 Minggu</td>
-                                        <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#artikel" data-toggle="modal" data-target="#artikel" class="btn btn-info">Edit Article</a></td>
-                                        <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cara" data-toggle="modal" data-target="#cara" class="btn btn-info">Edit Cara</a></td>
-                                        <td>
-                                            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-edit">Edit</a>
-                                            ||
-                                            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-delete">Delete</a>
-                                        </td>
-                                    </tr>
+                                    <?php $no = 1;
+                                    foreach ($data_tanamans as $tanaman) : ?>
+                                        <tr>
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $tanaman['nama_tanaman']; ?></td>
+                                            <td><img src="/tanam/<?= $tanaman['image_tanaman']; ?>" class="image" width="80" height="60"></td>
+                                            <td><?= $tanaman['lama']; ?> <?= $tanaman['waktu']; ?></td>
+                                            <td><?= $tanaman['musim']; ?></td>
+                                            <?php if (!empty($tanaman['isi_artikel'])) { ?>
+                                                <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#artikel<?= $tanaman['id_artikel']; ?>" data-toggle="modal" data-target="#artikel" class="btn btn-info">Edit Article</a></td>
+                                            <?php } else { ?>
+                                                <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#artikel" data-toggle="modal" data-target="#artikel<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Tambah Article</a></td>
+                                            <?php } ?>
+
+                                            <?php if (!empty($tanaman['isi_budidaya'])) { ?>
+                                                <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cara<?= $tanaman['id_budidaya']; ?>" data-toggle="modal" data-target="#cara" class="btn btn-info">Edit Budidaya</a></td>
+                                            <?php } else { ?>
+                                                <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cara" data-toggle="modal" data-target="#cara<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Tambah Budidaya</a></td>
+                                            <?php } ?>
+                                            <td><?= $tanaman['keterangan']; ?></td>
+                                            <td>
+                                                <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-edit">Edit</a>
+                                                ||
+                                                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-delete">Delete</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- /.content -->
 </div>
 
 <div class="modal fade" id="modal-lg">
@@ -105,40 +113,58 @@
                 </button>
             </div>
 
-            <form action="/tambah-product" method="POST" enctype="multipart/form-data">
+            <form action="/tambah-tanaman" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Tanaman</label>
-                        <input type="text" class="form-control <?php /*($validation->hasError('nama_madu')) ? 'is-invalid' : '';*/ ?>" id="exampleInputEmail1" name="nama_madu" value="<?php old('nama_madu'); ?>" placeholder="Enter email" autofocus>
-                        <div class="invalid-feedback"><?php /*$validation->getError('nama_madu'); */ ?></div>
+                        <input type="text" class="form-control <?= ($validation->hasError('nama_tanaman')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="nama_tanaman" value="<?= old('nama_tanaman'); ?>" placeholder="Enter email" autofocus>
+                        <div class="invalid-feedback"><?= $validation->getError('nama_tanaman');  ?></div>
                     </div>
 
                     <div class="form-group">
                         <label>Image</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input <?php /*($validation->hasError('image')) ? 'is-invalid' : ''; */ ?>" id="exampleInputFile" name="image" onchange="prevGambar()">
-                            <div class="invalid-feedback"><?php /* $validation->getError('image');*/ ?></div>
+                            <input type="file" class="custom-file-input <?= ($validation->hasError('image_tanaman')) ? 'is-invalid' : '';  ?>" id="exampleInputFile" name="image_tanaman" onchange="prevGambar()">
+                            <div class="invalid-feedback"><?= $validation->getError('image_tanaman'); ?></div>
                             <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
                         </div>
                         <img src="/products/default.jpg" class="img-thumbnail img-preview">
                     </div>
 
                     <div class="form-group">
-                        <label>Waktu</label>
                         <div class="row">
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control <?php /*($validation->hasError('nama_madu')) ? 'is-invalid' : '';*/ ?>" id="exampleInputEmail1" name="nama_madu" value="<?php old('nama_madu'); ?>" autofocus>
+                            <div class="col-sm-8">
+                                <label>Waktu</label>
                             </div>
-                            <div class="col-sm-6">
-                                <select class="custom-select">
-                                    <option>Hari</option>
-                                    <option>Minggu</option>
-                                    <option>Tahun</option>
+                            <div class="col-sm-4">
+                                <label for="exampleInputEmail1">Ditanam dimusim</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control <?= ($validation->hasError('lama')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="lama" value="<?= old('lama'); ?>" autofocus>
+                                <div class="invalid-feedback"><?= $validation->getError('lama');  ?></div>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="custom-select" name="waktu">
+                                    <option value="Hari">Hari</option>
+                                    <option value="Minggu">Minggu</option>
+                                    <option value="Tahun">Tahun</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="custom-select" name="musim">
+                                    <option value="Semua">Semua Musim</option>
+                                    <option value="Hujan">Hujan</option>
+                                    <option value="Kemarau">Kemarau</option>
                                 </select>
                             </div>
                         </div>
-                        <!-- <textarea class="form-control <?php /* ($validation->hasError('deskripsi')) ? 'is-invalid' : '';*/ ?>" rows="3" placeholder="Masukan Deskripsi ..." value="<?= old('deskripsi'); ?>" name="deskripsi"></textarea> -->
-                        <!-- <div class="invalid-feedback"><?php /* $validation->getError('deskripsi'); */ ?></div> -->
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">keterangan</label>
+                            <textarea class="form-control" rows="3" placeholder="Masukan Keterangan ..." value="<?= old('keterangan'); ?>" name="keterangan"></textarea>
+                        </div>
                     </div>
                 </div>
 
@@ -148,9 +174,7 @@
                 </div>
             </form>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="modal fade" id="cara">
@@ -162,42 +186,57 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-outline card-info">
-                        <div class="card-body">
-                            <textarea id="summernote"></textarea>
+                    <form action="/tambah-budidaya" method="POST" enctype="multipart/form-data">
+                        <div class="card card-outline card-info">
+                            <div class="card-body">
+                                <textarea id="summernote1" name="isi_budidaya"></textarea>
+                            </div>
                         </div>
-                    </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Tambahkan</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- /.col-->
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="artikel">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Article Tanaman</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-outline card-info">
-                        <div class="card-body">
-                            <textarea id="summernote"></textarea>
-                        </div>
+<?php foreach ($data_tanamans as $tanamant) : ?>
+    <div class="modal fade" id="artikel<?= $tanamant['id_tanaman_tanaman']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Article Tanaman</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="/tambah-artikel" method="POST">
+                            <input type="hidden" name="id_tanaman" value="<?= $tanamant['id_tanaman_tanaman']; ?>">
+                            <div class="card card-outline card-info">
+                                <div class="card-body">
+                                    <textarea id="summernote<?= $tanamant['id_tanaman_tanaman']; ?>" name="isi_artikel"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Tambahkan</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <!-- /.col-->
             </div>
         </div>
     </div>
-</div>
+<?php endforeach ?>
 
 <?php /* foreach ($data_products as $product) : ?>
     <div class="modal fade" id="modal-edit<?= $product['id_madu']; ?>">
