@@ -56,130 +56,78 @@ class Tanamans extends BaseController
             return redirect()->to('/admin-tanaman')->withInput();
         }
 
+        $id_tanaman = $this->request->getVar('id_tanaman');
+        $nama_tanaman = $this->request->getVar('nama_tanaman');
+        $lama = $this->request->getVar('lama');
+        $waktu = $this->request->getVar('waktu');
+        $musim = $this->request->getVar('musim');
+        $keterangan = $this->request->getVar('keterangan');
+
         //ambil iimage
         $imageTanaman = $this->request->getFile('image_tanaman');
         //upload gambar default jika tidak diisi
         if ($imageTanaman->getError() == 4) {
-            $namaImage = 'default.jpg';
+            if (!empty($imageTanaman)) {
+                $namaImage = $this->request->getVar('image_tanaman_lama');
+            } else {
+                $namaImage = 'default.jpg';
+            }
         } else {
-            //generate random nama image
-            $namaImage = $imageTanaman->getRandomName();
-            $imageTanaman->move('tanam', $namaImage);
+            if (!empty($id_tanaman)) {
+                if (!empty($imageTanaman)) {
+                    $image_tanam = $this->TanamansModel->find($this->request->getVar('id_tanaman'));
+                    if ($image_tanam['image_tanaman'] != 'default.jpg') {
+                        //hapus file lama
+                        unlink('tanam/' . $this->request->getVar('image_tanaman_lama'));
+                    }
+                    $namaImage = $imageTanaman->getRandomName();
+                    $imageTanaman->move('tanam', $namaImage);
+                }
+            } else {
+                $namaImage = $imageTanaman->getRandomName();
+                $imageTanaman->move('tanam', $namaImage);
+            }
         }
 
-        $this->TanamansModel->save([
-            'nama_tanaman' => $this->request->getVar('nama_tanaman'),
-            'image_tanaman' => $namaImage,
-            'lama' => $this->request->getVar('lama'),
-            'waktu' => $this->request->getVar('waktu'),
-            'musim' => $this->request->getVar('musim'),
-            'keterangan' => $this->request->getVar('keterangan'),
-        ]);
+        if (!empty($id_tanaman)) {
+            $this->TanamansModel->save([
+                'id_tanaman' => $id_tanaman,
+                'nama_tanaman' => $nama_tanaman,
+                'image_tanaman' => $namaImage,
+                'lama' => $lama,
+                'waktu' => $waktu,
+                'musim' => $musim,
+                'keterangan' => $keterangan,
+            ]);
+        } else {
+            $this->TanamansModel->save([
+                'nama_tanaman' => $nama_tanaman,
+                'image_tanaman' => $namaImage,
+                'lama' => $lama,
+                'waktu' => $waktu,
+                'musim' => $musim,
+                'keterangan' => $keterangan,
+            ]);
+        }
 
         session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
         return redirect()->to('/admin-tanaman');
     }
 
-    // public function prosesUpdateProduct()
-    // {
-    //     //untuk get data file
-    //     // $this->request->getFile('file')
+    public function prosesDeleteTanaman()
+    {
+        $id = $this->request->getVar('id_tanaman');
 
-    //     if (!$this->validate([
-    //         'nama_madu' => [
-    //             'rules' => 'required',
-    //             'errors' => [
-    //                 'required' => '{field} harus diisi'
-    //             ]
-    //         ],
-    //         'image' => [
-    //             // 'rules' => 'uploaded[image]|max_size[image,1024]|is_image[image]|mime_in[image,image/jpg,image/jpeg,image/png]',
-    //             'rules' => 'max_size[image,1024]|is_image[image]|mime_in[image,image/jpg,image/jpeg,image/png]',
-    //             'errors' => [
-    //                 // 'uploaded' => '{field} harus di upload',
-    //                 'max_size' => 'Gambar terlalu besar',
-    //                 'is_image' => 'Yang anda pilih bukan gambar',
-    //                 'mime_in' => 'Yang anda pilih bukan gambar'
-    //             ]
-    //         ],
-    //         'deskripsi' => [
-    //             'rules' => 'required',
-    //             'errors' => [
-    //                 'required' => '{field} harus diisi'
-    //             ]
-    //         ],
-    //         'harga' => [
-    //             'rules' => 'required|numeric',
-    //             'errors' => [
-    //                 'required' => '{field} harus diisi',
-    //                 'numeric' => '{field} harus berisi angka saja'
-    //             ]
-    //         ],
-    //         'sisa' => [
-    //             'rules' => 'required|numeric',
-    //             'errors' => [
-    //                 'required' => '{field} harus diisi',
-    //                 'numeric' => '{field} harus berisi angka saja'
-    //             ]
-    //         ],
-    //         'stock' => [
-    //             'rules' => 'required|numeric',
-    //             'errors' => [
-    //                 'required' => '{field} harus diisi',
-    //                 'numeric' => '{field} harus berisi angka saja'
-    //             ]
-    //         ],
-    //     ])) {
-    //         session()->setFlashdata('gagal', 'Data gagal ditambahkan');
-    //         return redirect()->to('/admin-product')->withInput();
-    //     }
+        //cari gambar berdasarkan id
+        $tanaman = $this->TanamansModel->find($id);
+        // cek jika file gambar default
+        if ($tanaman['image_tanaman'] != 'default.jpg') {
+            //hapus gambar dalam folder
+            unlink('tanam/' . $tanaman['image_tanaman']);
+        }
 
-    //     //ambil iimage
-    //     $imageMadu = $this->request->getFile('image');
-    //     //cek image lama di ganti atau tidak
-    //     if ($imageMadu->getError() == 4) {
-    //         $namaImage = $this->request->getVar('image_lama');
-    //     } else {
-
-    //         //generate random nama image
-    //         $namaImage = $imageMadu->getRandomName();
-    //         $imageMadu->move('products', $namaImage);
-
-    //         //cek jika default
-    //         $product = $this->ProductModel->find($this->request->getVar('id_madu'));
-    //         if ($product['image'] != 'default.jpg') {
-    //             //hapus file lama
-    //             unlink('products/' . $this->request->getVar('image_lama'));
-    //         }
-    //     }
-
-    //     $this->ProductModel->save([
-    //         'id_madu' => $this->request->getVar('id_madu'),
-    //         'nama_madu' => $this->request->getVar('nama_madu'),
-    //         'image' => $namaImage,
-    //         'deskripsi' => $this->request->getVar('deskripsi'),
-    //         'harga' => $this->request->getVar('harga'),
-    //         'sisa' => $this->request->getVar('sisa'),
-    //         'stock' => $this->request->getVar('stock'),
-    //     ]);
-
-    //     session()->setFlashdata('berhasilUpdate', 'Data berhasil ditambahkan');
-    //     return redirect()->to('/admin-product');
-    // }
-
-    // public function deleteProduct()
-    // {
-    //     $id = $this->request->getVar('id_madu');
-    //     //cari gambar berdasarkan id
-    //     $product = $this->ProductModel->find($id);
-    //     // cek jika file gambar default
-    //     if ($product['image'] != 'default.jpg') {
-    //         //hapus gambar dalam folder
-    //         unlink('products/' . $product['image']);
-    //     }
-
-    //     $this->ProductModel->delete($id); //menghapus data didatabase
-    //     session()->setFlashdata('delete', 'Data Berhasil dihapus');
-    //     return redirect()->to('/admin-product');
-    // }
+        $this->TanamansModel->delete($id); //menghapus data didatabase
+        session()->setFlashdata('delete', 'Data Berhasil dihapus');
+        return redirect()->to('/admin-tanaman');
+    }
 }

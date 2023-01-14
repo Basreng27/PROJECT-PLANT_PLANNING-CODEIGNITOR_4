@@ -52,6 +52,42 @@ class Admins extends BaseController
         return view('Pages/Admin/Tanaman/tanaman', $data);
     }
 
+    public function tanamanArtikel($id_tanaman)
+    {
+        if (session()->get('stat') != 'login-admin') {
+            if (session()->get('stat') == 'login-user') {
+                return redirect()->to('/home');
+            } else {
+                return redirect()->to('/');
+            }
+        }
+
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'data_artikel' => $this->TanamansModel->tanamanXartikel($id_tanaman)
+        ];
+
+        return view('Pages/Admin/Tanaman/artikel', $data);
+    }
+
+    public function tanamanBudidaya($id_tanaman)
+    {
+        if (session()->get('stat') != 'login-admin') {
+            if (session()->get('stat') == 'login-user') {
+                return redirect()->to('/home');
+            } else {
+                return redirect()->to('/');
+            }
+        }
+
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'data_budidaya' => $this->TanamansModel->tanamanXbudidaya($id_tanaman)
+        ];
+
+        return view('Pages/Admin/Tanaman/budidaya', $data);
+    }
+
     //     public function review()
     //     {
     //         if (session()->get('stat') != 'login-admin') {

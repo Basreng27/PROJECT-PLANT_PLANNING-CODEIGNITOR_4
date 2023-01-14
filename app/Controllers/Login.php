@@ -3,14 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\Admins_model;
+use App\Models\Users_model;
 
 class Login extends BaseController
 {
     protected $AdminsModel;
+    protected $UsersModel;
 
     public function __construct()
     {
         $this->AdminsModel = new Admins_model();
+        $this->UsersModel = new Users_model();
     }
 
     public function index()

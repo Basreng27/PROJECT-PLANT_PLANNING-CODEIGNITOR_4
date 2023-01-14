@@ -15,25 +15,25 @@
 
     <?php if (session()->getFlashdata('berhasil')) { ?>
         <div class="alert alert-success" role="alert">
-            Product Berhasil ditambahkan
+            Tanaman Berhasil ditambahkan
         </div>
     <?php } ?>
 
     <?php if (session()->getFlashdata('berhasilUpdate')) { ?>
         <div class="alert alert-success" role="alert">
-            Product Berhasil diupdate
+            Tanaman Berhasil diupdate
         </div>
     <?php } ?>
 
     <?php if (session()->getFlashdata('delete')) { ?>
         <div class="alert alert-success" role="alert">
-            Product Berhasil didelete
+            Tanaman Berhasil didelete
         </div>
     <?php } ?>
 
     <?php if (session()->getFlashdata('gagal')) { ?>
         <div class="alert alert-danger" role="alert">
-            Product gagal ditambahkan
+            Tanaman gagal ditambahkan
         </div>
     <?php }  ?>
 
@@ -75,21 +75,21 @@
                                             <td><?= $tanaman['lama']; ?> <?= $tanaman['waktu']; ?></td>
                                             <td><?= $tanaman['musim']; ?></td>
                                             <?php if (!empty($tanaman['isi_artikel'])) { ?>
-                                                <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#artikel<?= $tanaman['id_artikel']; ?>" data-toggle="modal" data-target="#artikel" class="btn btn-info">Edit Article</a></td>
+                                                <td><a href="/tanaman-artikel/<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Edit Article</a></td>
                                             <?php } else { ?>
-                                                <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#artikel" data-toggle="modal" data-target="#artikel<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Tambah Article</a></td>
+                                                <td><a href="/tanaman-artikel/<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Tambah Article</a></td>
                                             <?php } ?>
 
                                             <?php if (!empty($tanaman['isi_budidaya'])) { ?>
-                                                <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cara<?= $tanaman['id_budidaya']; ?>" data-toggle="modal" data-target="#cara" class="btn btn-info">Edit Budidaya</a></td>
+                                                <td><a href="/tanaman-budidaya/<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Edit Budidaya</a></td>
                                             <?php } else { ?>
-                                                <td><a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cara" data-toggle="modal" data-target="#cara<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Tambah Budidaya</a></td>
+                                                <td><a href="/tanaman-budidaya/<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Tambah Budidaya</a></td>
                                             <?php } ?>
                                             <td><?= $tanaman['keterangan']; ?></td>
                                             <td>
-                                                <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-edit">Edit</a>
+                                                <a href="#" class="btn btn-info" data-bs-toggle="modal" data-toggle="modal" data-target="#modal-edit<?= $tanaman['id_tanaman_tanaman']; ?>">Edit</a>
                                                 ||
-                                                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-delete">Delete</a>
+                                                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-toggle="modal" data-target="#modal-delete<?= $tanaman['id_tanaman_tanaman']; ?>">Delete</a>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -117,7 +117,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Tanaman</label>
-                        <input type="text" class="form-control <?= ($validation->hasError('nama_tanaman')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="nama_tanaman" value="<?= old('nama_tanaman'); ?>" placeholder="Enter email" autofocus>
+                        <input type="text" class="form-control <?= ($validation->hasError('nama_tanaman')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="nama_tanaman" value="<?= old('nama_tanaman'); ?>" autofocus>
                         <div class="invalid-feedback"><?= $validation->getError('nama_tanaman');  ?></div>
                     </div>
 
@@ -149,6 +149,7 @@
                                 <select class="custom-select" name="waktu">
                                     <option value="Hari">Hari</option>
                                     <option value="Minggu">Minggu</option>
+                                    <option value="Bulan">Bulan</option>
                                     <option value="Tahun">Tahun</option>
                                 </select>
                             </div>
@@ -177,163 +178,113 @@
     </div>
 </div>
 
-<div class="modal fade" id="cara">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Cara Budidaya Tanaman</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="/tambah-budidaya" method="POST" enctype="multipart/form-data">
-                        <div class="card card-outline card-info">
-                            <div class="card-body">
-                                <textarea id="summernote1" name="isi_budidaya"></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Tambahkan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<?php foreach ($data_tanamans as $tanamant) : ?>
-    <div class="modal fade" id="artikel<?= $tanamant['id_tanaman_tanaman']; ?>">
+<?php foreach ($data_tanamans as $tanamane) : ?>
+    <div class="modal fade" id="modal-edit<?= $tanamane['id_tanaman_tanaman']; ?>">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Article Tanaman</h4>
+                    <h4 class="modal-title">Tambah Tanaman</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <form action="/tambah-artikel" method="POST">
-                            <input type="hidden" name="id_tanaman" value="<?= $tanamant['id_tanaman_tanaman']; ?>">
-                            <div class="card card-outline card-info">
-                                <div class="card-body">
-                                    <textarea id="summernote<?= $tanamant['id_tanaman_tanaman']; ?>" name="isi_artikel"></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Tambahkan</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php endforeach ?>
-
-<?php /* foreach ($data_products as $product) : ?>
-    <div class="modal fade" id="modal-edit<?= $product['id_madu']; ?>">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Product</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <form action="/update-product" method="POST" enctype="multipart/form-data">
+                <form action="/tambah-tanaman" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <input type="hidden" name="id_madu" value="<?= $product['id_madu']; ?>">
+                        <input type="hidden" name="id_tanaman" value="<?= $tanamane['id_tanaman_tanaman']; ?>">
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nama Madu</label>
-                            <input type="text" class="form-control <?= ($validation->hasError('nama_madu')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="nama_madu" value="<?= $product['nama_madu']; ?>" placeholder="Enter email" autofocus>
-                            <div class="invalid-feedback"><?= $validation->getError('nama_madu'); ?></div>
+                            <label for="exampleInputEmail1">Nama Tanaman</label>
+                            <input type="text" class="form-control <?= ($validation->hasError('nama_tanaman')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="nama_tanaman" value="<?= !empty($tanamane['nama_tanaman']) ? $tanamane['nama_tanaman'] : '' ?>" placeholder="Enter email" autofocus>
+                            <div class="invalid-feedback"><?= $validation->getError('nama_tanaman');  ?></div>
                         </div>
 
                         <div class="form-group">
                             <label>Image</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input <?= ($validation->hasError('image')) ? 'is-invalid' : ''; ?>" id="exampleInputFile" name="image" onchange="prevGambar()">
-                                <input type="hidden" name="image_lama" value="<?= $product['image']; ?>">
-                                <div class="invalid-feedback"><?= $validation->getError('image'); ?></div>
+                                <input type="hidden" name="image_tanaman_lama" value="<?= $tanamane['image_tanaman']; ?>">
+                                <input type="file" class="custom-file-input <?= ($validation->hasError('image_tanaman')) ? 'is-invalid' : ''; ?>" id="exampleInputFile" name="image_tanaman" onchange="prevGambar()">
+                                <div class="invalid-feedback"><?= $validation->getError('image_tanaman'); ?></div>
                                 <label class="custom-file-label" for="exampleInputFile">Pilih file untuk diupdate</label>
                             </div>
-                            <img src="/products/<?= $product['image']; ?>" class="img-thumbnail img-preview">
+                            <img src="/set_admin/<?= $tanamane['image_tanaman']; ?>" class="img-thumbnail img-preview">
                         </div>
 
                         <div class="form-group">
-                            <label>Deskripsi</label>
-                            <textarea class="form-control <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" rows="3" placeholder="Masukan Deskripsi ..." name="deskripsi"><?= $product['deskripsi']; ?></textarea>
-                            <div class="invalid-feedback"><?= $validation->getError('deskripsi'); ?></div>
-                        </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <label>Waktu</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="exampleInputEmail1">Ditanam dimusim</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control <?= ($validation->hasError('lama')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="lama" value="<?= !empty($tanamane['lama']) ? $tanamane['lama'] : '' ?>" autofocus>
+                                    <div class="invalid-feedback"><?= $validation->getError('lama');  ?></div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" name="waktu">
+                                        <option value="<?= !empty($tanamane['waktu']) ? $tanamane['waktu'] : '' ?>"><?= !empty($tanamane['waktu']) ? $tanamane['waktu'] : '' ?></option>
+                                        <option value="Hari">Hari</option>
+                                        <option value="Minggu">Minggu</option>
+                                        <option value="Bulan">Bulan</option>
+                                        <option value="Tahun">Tahun</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="custom-select" name="musim">
+                                        <option value="<?= !empty($tanamane['musim']) ? $tanamane['musim'] : '' ?>"><?= !empty($tanamane['musim']) ? $tanamane['musim'] : '' ?></option>
+                                        <option value="Semua">Semua Musim</option>
+                                        <option value="Hujan">Hujan</option>
+                                        <option value="Kemarau">Kemarau</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Harga</label>
-                            <input type="number" class="form-control <?= ($validation->hasError('harga')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" placeholder="Masukan Harga" value="<?= $product['harga']; ?>" name="harga">
-                            <div class="invalid-feedback"><?= $validation->getError('harga'); ?></div>
-                        </div>
+                            <div class="form-group">
+                                <label>Keterangan</label>
+                                <textarea class="form-control <?= ($validation->hasError('keterangan')) ? 'is-invalid' : ''; ?>" rows="3" placeholder="Masukan keterangan ..." value="<?= old('keterangan'); ?>" name="keterangan"><?= $tanamane['keterangan']; ?></textarea>
+                                <div class="invalid-feedback"><?= $validation->getError('keterangan'); ?></div>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Sisa Barang</label>
-                            <input type="number" class="form-control <?= ($validation->hasError('sisa')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" placeholder="Masukan Sisa Barang" value="<?= $product['sisa']; ?>" name="sisa">
-                            <div class="invalid-feedback"><?= $validation->getError('sisa'); ?></div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Stock Barang</label>
-                            <input type="number" class="form-control <?= ($validation->hasError('stock')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" placeholder="Masukan Stock Barang" value="<?= $product['stock']; ?>" name="stock">
-                            <div class="invalid-feedback"><?= $validation->getError('stock'); ?></div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
 <?php endforeach ?>
 
-<?php foreach ($data_products as $productdel) : ?>
-    <div class="modal fade" id="modal-delete<?= $productdel['id_madu']; ?>">
+<?php foreach ($data_tanamans as $tanamandel) : ?>
+    <div class="modal fade" id="modal-delete<?= $tanamandel['id_tanaman_tanaman']; ?>">
         <div class="modal-dialog modal-lg">
             <div class="modal-content bg-danger">
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete Product</h4>
+                    <h4 class="modal-title">Delete Tanaman</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <!-- <form action="/delete-product/<?= $productdel['id_madu']; ?>" method="POST"> -->
-                <form action="/delete-product" method="POST">
+                <form action="/delete-tanaman" method="POST">
                     <div class="modal-body">
-                        <input type="hidden" name="id_madu" value="<?= $productdel['id_madu']; ?>">
-                        Apakah kamu yakin akan <strong>menghapus</strong> product <?= $productdel['nama_madu']; ?>?
+                        <input type="hidden" name="id_tanaman" value="<?= $tanamandel['id_tanaman_tanaman']; ?>">
+                        Apakah kamu yakin akan <strong>menghapus</strong> tanaman <?= $tanamandel['nama_tanaman']; ?>?
                     </div>
 
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Delete</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-primary">Ya</button>
                     </div>
                 </form>
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
-<?php endforeach */ ?>
+<?php endforeach ?>
 <?= $this->endSection(); ?>

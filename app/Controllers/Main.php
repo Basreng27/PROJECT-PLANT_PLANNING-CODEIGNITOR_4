@@ -2,17 +2,17 @@
 
 namespace App\Controllers;
 
-// use App\Models\Product_model;
+use App\Models\Tanamans_model;
 
 
 class Main extends BaseController
 {
-    // protected $ProductModel;
+    protected $TanamanModel;
 
-    // public function __construct()
-    // {
-    //     $this->ProductModel = new Product_model();
-    // }
+    public function __construct()
+    {
+        $this->TanamanModel = new Tanamans_model();
+    }
 
     public function index()
     {
@@ -27,30 +27,30 @@ class Main extends BaseController
     public function tanaman()
     {
         $data = [
-            // 'data_products' => $this->ProductModel->findAll(),
+            'data_tanaman' => $this->TanamanModel->findAll(),
             // 'set' => $this->Set_dashboardModel->find(1)
         ];
 
         return view('Pages/User/tanaman', $data);
     }
 
-    public function article()
+    public function article($id_tanaman)
     {
-        // $data = [
-        //     'data_products' => $this->ProductModel->findAll(),
-        //     'set' => $this->Set_dashboardModel->find(1)
-        // ];
+        $data = [
+            'data_artikel' => $this->TanamanModel->tanamanXartikel($id_tanaman),
+            // 'set' => $this->Set_dashboardModel->find(1)
+        ];
 
-        return view('Pages/User/article');
+        return view('Pages/User/article', $data);
     }
 
-    public function cara()
+    public function cara($id_tanaman)
     {
-        // $data = [
-        //     'data_products' => $this->ProductModel->findAll(),
-        //     'set' => $this->Set_dashboardModel->find(1)
-        // ];
+        $data = [
+            'data_artikel' => $this->TanamanModel->tanamanXbudidaya($id_tanaman),
+            // 'set' => $this->Set_dashboardModel->find(1)
+        ];
 
-        return view('Pages/User/cara');
+        return view('Pages/User/cara', $data);
     }
 }

@@ -2,24 +2,23 @@
 
 namespace App\Controllers;
 
-// use App\Models\Users_model;
+use App\Models\Users_model;
 
 class Regist extends BaseController
 {
-    // protected $UsersModel;
+    protected $UsersModel;
 
-    // public function __construct()
-    // {
-    //     $this->UsersModel = new Users_model();
-    // }
+    public function __construct()
+    {
+        $this->UsersModel = new Users_model();
+    }
 
     public function index()
     {
-        // $data = [
-        //     'validation' => \Config\Services::validation(),
-        //     'gagal' => '',
-        //     'set' => $this->Set_dashboardModel->find(1)
-        // ];
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'gagal' => '',
+        ];
 
         return view('Pages/Static/login_regist/regist');
     }
@@ -48,8 +47,8 @@ class Regist extends BaseController
             ],
         ])) {
             return redirect()->to('/regist')->withInput();
-            // $data['gagal'] = 'gagal';
-            // return view('Pages/Static/login_regist/regist', $data);
+            $data['gagal'] = 'gagal';
+            return view('Pages/Static/login_regist/regist', $data);
         }
 
         $this->UsersModel->save([

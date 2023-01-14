@@ -16,8 +16,8 @@ $routes->set404Override();
 // users not login
 $routes->get('/', 'Main::index');
 $routes->get('/tanaman', 'Main::tanaman');
-$routes->get('/article', 'Main::article');
-$routes->get('/cara', 'Main::cara');
+$routes->get('/article/(:num)', 'Main::article/$1');
+$routes->get('/cara/(:num)', 'Main::cara/$1');
 
 // user login
 $routes->get('/mari-tanam', 'User\Users::mariTanam');
@@ -43,7 +43,11 @@ $routes->get('/admin-set-dashboard', 'Admin\Admins::setDashboard');
 $routes->get('/admin-pesanan', 'Admin\Admins::pesanan');
 // tanaman
 $routes->post('/tambah-tanaman', 'Admin\Tanamans::prosesTambahTanaman');
+$routes->post('/delete-tanaman', 'Admin\Tanamans::prosesDeleteTanaman');
+$routes->get('/tanaman-artikel/(:num)', 'Admin\Admins::tanamanArtikel/$1');
 $routes->post('/tambah-artikel', 'Admin\Artikels::prosesTambahArtikel');
+$routes->get('/tanaman-budidaya/(:num)', 'Admin\Admins::tanamanBudidaya/$1');
+$routes->post('/tambah-budidaya', 'Admin\Budidayas::prosesTambahBudidaya');
 // $routes->post('/update-product', 'Admin\Product::prosesUpdateProduct');
 // // $routes->delete('/delete-product/(:any)', 'Admin\Product::deleteProduct/$1');
 // $routes->post('/delete-product', 'Admin\Product::deleteProduct');

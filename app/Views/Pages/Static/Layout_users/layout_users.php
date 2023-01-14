@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Web Penjadwalan Tanaman</title>
     <!-- CSS files -->
-    <link href="assets/users/css/tabler.min.css" rel="stylesheet" />
-    <link href="assets/users/css/tabler-flags.min.css" rel="stylesheet" />
-    <link href="assets/users/css/tabler-payments.min.css" rel="stylesheet" />
-    <link href="assets/users/css/tabler-vendors.min.css" rel="stylesheet" />
-    <link href="assets/users/css/demo.min.css" rel="stylesheet" />
-    <link href="assets/users/css/demo.css" rel="stylesheet" />
-    <!-- <link href="assets/users/css/font-awesome.min.css" rel="stylesheet" /> -->
+    <link href="<?= base_url() ?>/assets/users/css/tabler.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/demo.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/demo.css" rel="stylesheet" />
+    <!-- <link href="<?= base_url() ?>/assets/users/css/font-awesome.min.css" rel="stylesheet" /> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <script></script>
@@ -34,28 +34,27 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                             <div class="d-none d-xl-block ps-2">
-                                <?php /*if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { */ ?>
-                                <div><?php /* session()->get('nama');*/ ?></div>
-                                <div class="mt-1 small text-muted"><?php /* session()->get('nama');*/ ?></div>
-                                <?php /* } else {*/ ?>
-                                <div>Harus Login</div>
-                                <div class="mt-1 small text-muted">Harus Login</div>
-                                <?php /*}*/ ?>
+                                <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') {  ?>
+                                    <div><?= session()->get('nama'); ?></div>
+                                    <div class="mt-1 small text-muted"><?= session()->get('nama'); ?></div>
+                                <?php  } else { ?>
+                                    <div>Harus Login</div>
+                                    <div class="mt-1 small text-muted">Harus Login</div>
+                                <?php } ?>
                             </div>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <?php /*if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { 
-                            } else {*/ ?>
-                            <a href="/login" class="dropdown-item">Login</a>
-                            <a href="/regist" class="dropdown-item">Regist</a>
-                            <?php /*}*/ ?>
-                            <?php /*if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { */ ?>
-                            <!-- <a href="/chat" class="dropdown-item">Chat</a> -->
-                            <a href="/saya-tanam" class="dropdown-item">Saya Tanam</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="/logout" class="dropdown-item">Logout</a>
-                            <?php /*}*/ ?>
+                            <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') {
+                            } else { ?>
+                                <a href="/login" class="dropdown-item">Login</a>
+                                <a href="/regist" class="dropdown-item">Regist</a>
+                            <?php } ?>
+                            <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                                <a href="/saya-tanam" class="dropdown-item">Saya Tanam</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="/logout" class="dropdown-item">Logout</a>
+                            <?php } ?>
                         </div>
                     </div>
 
@@ -161,13 +160,13 @@
     </div>
 
     <!-- Libs JS -->
-    <script src="assets/users/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="assets/users/libs/jsvectormap/dist/js/jsvectormap.min.js"></script>
-    <script src="assets/users/libs/jsvectormap/dist/maps/world.js"></script>
-    <script src="assets/users/libs/jsvectormap/dist/maps/world-merc.js"></script>
+    <script src="<?= base_url() ?>/assets/users/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="<?= base_url() ?>/assets/users/libs/jsvectormap/dist/js/jsvectormap.min.js"></script>
+    <script src="<?= base_url() ?>/assets/users/libs/jsvectormap/dist/maps/world.js"></script>
+    <script src="<?= base_url() ?>/assets/users/libs/jsvectormap/dist/maps/world-merc.js"></script>
     <!-- Tabler Core -->
-    <script src="assets/users/js/tabler.min.js"></script>
-    <script src="assets/users/js/demo.min.js"></script>
+    <script src="<?= base_url() ?>/assets/users/js/tabler.min.js"></script>
+    <script src="<?= base_url() ?>/assets/users/js/demo.min.js"></script>
 </body>
 
 </html>

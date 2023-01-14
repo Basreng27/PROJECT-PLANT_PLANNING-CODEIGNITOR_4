@@ -9,27 +9,27 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/admins/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="assets/admins/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
-    <link rel="stylesheet" href="assets/admins/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
-    <link rel="stylesheet" href="assets/admins/plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="assets/admins/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="assets/admins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="assets/admins/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
-    <link rel="stylesheet" href="assets/admins/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/summernote/summernote-bs4.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="assets/admins/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="assets/admins/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="assets/admins/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/admins/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -163,54 +163,54 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="assets/admins/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="assets/admins/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <!-- Bootstrap 4 -->
-    <script src="assets/admins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
-    <script src="assets/admins/plugins/chart.js/Chart.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
-    <script src="assets/admins/plugins/sparklines/sparkline.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/sparklines/sparkline.js"></script>
     <!-- JQVMap -->
-    <script src="assets/admins/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="assets/admins/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <!-- jQuery Knob Chart -->
-    <script src="assets/admins/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- daterangepicker -->
-    <script src="assets/admins/plugins/moment/moment.min.js"></script>
-    <script src="assets/admins/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/moment/moment.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="assets/admins/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
-    <script src="assets/admins/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
-    <script src="assets/admins/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="assets/admins/dist/js/adminlte.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/dist/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <!-- <script src="assets/admins/dist/js/demo.js"></script> -->
+    <!-- <script src="<?= base_url() ?>/assets/admins/dist/js/demo.js"></script> -->
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="assets/admins/dist/js/pages/dashboard.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/dist/js/pages/dashboard.js"></script>
     <!-- DataTables  & Plugins -->
-    <script src="assets/admins/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/admins/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="assets/admins/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="assets/admins/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="assets/admins/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="assets/admins/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="assets/admins/plugins/jszip/jszip.min.js"></script>
-    <script src="assets/admins/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="assets/admins/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="assets/admins/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="assets/admins/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="assets/admins/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/jszip/jszip.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- CodeMirror -->
-    <script src="assets/admins/plugins/codemirror/codemirror.js"></script>
-    <script src="assets/admins/plugins/codemirror/mode/css/css.js"></script>
-    <script src="assets/admins/plugins/codemirror/mode/xml/xml.js"></script>
-    <script src="assets/admins/plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/codemirror/codemirror.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/codemirror/mode/css/css.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/codemirror/mode/xml/xml.js"></script>
+    <script src="<?= base_url() ?>/assets/admins/plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
     <script>
         $(function() {
             $("#example1").DataTable({
@@ -252,10 +252,7 @@
     <script>
         $(function() {
             // Summernote
-            <?php foreach ($dt as $data) : ?>
-                // console.log('#summernote')
-                $('#summernote<?= $data['id_tanaman_tanaman']; ?>').summernote()
-            <?php endforeach ?>
+            $('#summernote').summernote()
 
             // CodeMirror
             CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {

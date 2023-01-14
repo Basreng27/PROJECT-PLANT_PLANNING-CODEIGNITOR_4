@@ -3,37 +3,34 @@
 namespace App\Controllers\User;
 
 use App\Controllers\BaseController;
-// use App\Models\Keranjang_model;
+use App\Models\Tanamans_model;
 
 class Users extends BaseController
 {
-    // protected $KeranjangModel;
+    protected $TanamanModel;
 
-    // public function __construct()
-    // {
-    //     $this->Set_dashboardModel = new Set_dashboard_model();
-    // }
+    public function __construct()
+    {
+        $this->TanamanModel = new Tanamans_model();
+    }
 
     public function mariTanam()
     {
-        // if (session()->get('stat') != 'login-user') {
-        //     return redirect('/');
-        // }
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'data_tanaman' => $this->TanamanModel->findAll(),
+            // 'data_keranjang' => $this->KeranjangModel->getKeranjang(session()->get('id_user')),
+            // 'set' => $this->Set_dashboardModel->find(1)
+        ];
 
-        // $data = [
-        //     'validation' => \Config\Services::validation(),
-        //     'data_keranjang' => $this->KeranjangModel->getKeranjang(session()->get('id_user')),
-        //     'set' => $this->Set_dashboardModel->find(1)
-        // ];
-
-        return view('Pages/User/mari_tanam');
+        return view('Pages/User/mari_tanam', $data);
     }
 
     public function sayaTanam()
     {
-        // if (session()->get('stat') != 'login-user') {
-        //     return redirect('/');
-        // }
+        if (session()->get('stat') != 'login-user') {
+            return redirect('/');
+        }
 
         // $data = [
         //     'validation' => \Config\Services::validation(),

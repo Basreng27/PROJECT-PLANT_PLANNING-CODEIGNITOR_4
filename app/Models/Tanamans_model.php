@@ -19,4 +19,22 @@ class Tanamans_model extends Model
 
         return $this->findAll();
     }
+
+    public function tanamanXartikel($id_tanaman)
+    {
+        $this->select('*, tanamans.id_tanaman as id_tanaman_tanaman');
+        $this->join('artikels', 'artikels.id_tanaman = tanamans.id_tanaman', 'left');
+        $this->where(['tanamans.id_tanaman' => $id_tanaman]);
+
+        return $this->findAll();
+    }
+
+    public function tanamanXbudidaya($id_tanaman)
+    {
+        $this->select('*, tanamans.id_tanaman as id_tanaman_tanaman');
+        $this->join('budidayas', 'budidayas.id_tanaman = tanamans.id_tanaman', 'left');
+        $this->where(['tanamans.id_tanaman' => $id_tanaman]);
+
+        return $this->findAll();
+    }
 }
