@@ -57,6 +57,7 @@
                                         <th>Nama Tanaman</th>
                                         <th>Image</th>
                                         <th>Waktu</th>
+                                        <th>Pupuk</th>
                                         <th>Musim</th>
                                         <th>Article</th>
                                         <th>Cara Budidaya</th>
@@ -73,6 +74,7 @@
                                             <td><?= $tanaman['nama_tanaman']; ?></td>
                                             <td><img src="/tanam/<?= $tanaman['image_tanaman']; ?>" class="image" width="80" height="60"></td>
                                             <td><?= $tanaman['lama']; ?> <?= $tanaman['waktu']; ?></td>
+                                            <td><a href="/tanaman-pupuk/<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Pupuk</a></td>
                                             <td><?= $tanaman['musim']; ?></td>
                                             <?php if (!empty($tanaman['isi_artikel'])) { ?>
                                                 <td><a href="/tanaman-artikel/<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Edit Article</a></td>
