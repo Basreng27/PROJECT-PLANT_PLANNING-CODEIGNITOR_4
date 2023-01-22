@@ -49,7 +49,7 @@
                                         <td><?= $tanaman['lama']; ?> <?= $tanaman['waktu']; ?></td>
                                         <td>
                                             <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') {  ?>
-                                                <a href="#" class="btn" title="Klik Untuk Melihat Cara Budidaya" data-bs-toggle="modal" data-bs-target="#modal-mari">Budidaya</a>
+                                                <a href="#" class="btn" title="Klik Untuk Melihat Cara Budidaya" data-bs-toggle="modal" data-bs-target="#modal-mari<?= $tanaman['id_tanaman'] ?>">Budidaya</a>
                                             <?php } else { ?>
                                                 <a href="#" class="btn" title="Klik Untuk Melihat Cara Budidaya" data-bs-toggle="modal" data-bs-target="#modal-belum-login">Budidaya</a>
                                             <?php } ?>
@@ -67,41 +67,72 @@
     </div>
 </div>
 
-<div class="modal modal-blur fade" id="modal-mari" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+<?php
+foreach ($data_tanaman as $tanamanbud) : ?>
+    <div class="modal modal-blur fade" id="modal-mari<?= $tanamanbud['id_tanaman'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
 
-            <form action="/save-tanam" method="POST">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Nama Tanaman</label>
-                        <input type="text" class="form-control" name="nama" value="Buah" readonly>
+                <form action="/save-tanam" method="POST">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Tanaman</label>
+                            <input type="text" class="form-control" name="nama" value="<?= $tanamanbud['nama_tanaman']; ?>" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Waktu</label>
+                            <input type="text" class="form-control" name="nama_madu" value="<?= $tanamanbud['lama']; ?>  <?= $tanamanbud['waktu']; ?>" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Dari Tangal</label>
+                            <input type="date" id="dari-tanggal-<?= $tanamanbud['id_tanaman'] ?>" class="form-control" name="dari_tanggal" onchange="perkiraan(<?= $tanamanbud['id_tanaman'] ?>,'<?= $tanamanbud['waktu'] ?>',<?= $tanamanbud['lama'] ?>)">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Perkiraan Panen</label>
+                            <input type="date" id="perkiraan-panen-<?= $tanamanbud['id_tanaman'] ?>" class="form-control" name="perkiraan_panen" value="" readonly>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Waktu</label>
-                        <input type="text" class="form-control" name="nama_madu" value="4 Minggu" readonly>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">Cancel </a>
+                        <button type="submit" class="btn btn-primary">Budidaya</button>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Dari Tangal</label>
-                        <input type="date" class="form-control" name="jumlah" readonly>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Perkiraan Panen</label>
-                        <input type="date" class="form-control" name="total" readonly>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">Cancel </a>
-                    <button type="submit" class="btn btn-primary">Budidaya</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+    <script>
+        function perkiraan(id_tanaman, waktu, lama) {
+            if (waktu == "Hari") {
+                lama = lama;
+            } else if (waktu == "Minggu") {
+                lama = lama * 7;
+            } else if (waktu == "Bulan") {
+                lama = lama * 30;
+            } else if (waktu == "Tahun") {
+                lama = lama * 365;
+            } else {
+                lama = 0;
+            }
+            // mengambil tanggal sekarang
+            var dariTanggal = document.getElementById('dari-tanggal-' + id_tanaman).value;
+            // perkiraan
+            var perkiraanPanen = document.getElementById('perkiraan-panen-' + id_tanaman);
+            // membuat function date
+            var date = new Date(dariTanggal);
+            // mengambil tanggal saja
+            // var tanggal = date.getDate()
+            // Menambahkan hari ke tanggal
+            date.setDate(date.getDate() + parseInt(lama));
+            // Tampilkan tanggal yang dihasilkan kembali ke form 
+            perkiraanPanen.value = date.toISOString().slice(0, 10);
+        }
+    </script>
+<?php endforeach ?>
 
 <div class="modal modal-blur fade" id="modal-belum-login" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">

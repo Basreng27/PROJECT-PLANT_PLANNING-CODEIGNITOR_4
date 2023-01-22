@@ -259,7 +259,7 @@
                 mode: "htmlmixed",
                 theme: "monokai"
             });
-        })
+        });
     </script>
 </body>
 
