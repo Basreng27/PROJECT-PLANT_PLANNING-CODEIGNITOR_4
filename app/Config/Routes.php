@@ -22,7 +22,7 @@ $routes->get('/cara/(:num)', 'Main::cara/$1');
 // user login
 $routes->get('/mari-tanam', 'User\Users::mariTanam');
 $routes->get('/saya-tanam', 'User\Users::sayaTanam');
-$routes->get('/detail', 'User\Users::detail');
+$routes->get('/detail/(:num)/(:num)', 'User\Users::detail/$1/$2');
 
 // login
 $routes->get('/login', 'Login::index');
@@ -51,6 +51,9 @@ $routes->post('/tambah-budidaya', 'Admin\Budidayas::prosesTambahBudidaya');
 $routes->get('/tanaman-pupuk/(:num)', 'Admin\Admins::tanamanPupuk/$1');
 $routes->post('/tambah-pupuk', 'Admin\Pupuks::prosesTambahPupuk');
 $routes->post('/delete-pupuk', 'Admin\Pupuks::prosesDeletePupuk');
+
+// User
+$routes->post('/save-tanam', 'User\Mari_tanam::prosesSaveTanam');
 // $routes->post('/update-product', 'Admin\Product::prosesUpdateProduct');
 // // $routes->delete('/delete-product/(:any)', 'Admin\Product::deleteProduct/$1');
 // $routes->post('/delete-product', 'Admin\Product::deleteProduct');

@@ -14,11 +14,17 @@
     </div>
 </div>
 
-<?php /*if (session()->getFlashdata('gagal')) { ?>
+<?php if (session()->getFlashdata('dari')) { ?>
     <div class="alert alert-danger" role="alert">
-        Product gagal dicheckout
+        Dari tanggal tidak boleh kosong
     </div>
-<?php } */ ?>
+<?php }  ?>
+
+<?php if (session()->getFlashdata('berhasil')) { ?>
+    <div class="alert alert-success" role="alert">
+        Data Berhasil di tambahkan, silahkan cek fitur Saya Tanam
+    </div>
+<?php }  ?>
 
 <div class="page-body">
     <div class="container-xl">
@@ -75,6 +81,8 @@ foreach ($data_tanaman as $tanamanbud) : ?>
 
                 <form action="/save-tanam" method="POST">
                     <div class="modal-body">
+                        <input type="hidden" name="id_tanaman" value="<?= $tanamanbud['id_tanaman']; ?>">
+                        <input type="hidden" name="id_user" value="<?= session()->get('id_user') ?>">
                         <div class="mb-3">
                             <label class="form-label">Nama Tanaman</label>
                             <input type="text" class="form-control" name="nama" value="<?= $tanamanbud['nama_tanaman']; ?>" readonly>
