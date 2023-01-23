@@ -53,4 +53,19 @@ class Pupuks extends BaseController
         session()->setFlashdata('delete', 'Data Berhasil dihapus');
         return redirect()->to('/admin-tanaman');
     }
+
+
+    public function prosesUpdatePupuk($id_pupuk, $status_pupuk)
+    {
+        if (session()->get('stat') != 'login-user') {
+            return redirect('/');
+        }
+
+        $this->PupuksModel->save([
+            'id_pupuk' => $id_pupuk,
+            'status_pupuk' => $status_pupuk,
+        ]);
+
+        return redirect()->to('/saya-tanam');
+    }
 }

@@ -9,7 +9,7 @@ class Pupuks_model extends Model
     protected $table = 'pupuks';
     protected $primaryKey = 'id_pupuk';
     protected $useTimestamps = false;
-    protected $allowedFields = ['pupuk_ke', 'waktu_pupuk', 'id_tanaman', 'lama_pupuk'];
+    protected $allowedFields = ['pupuk_ke', 'waktu_pupuk', 'id_tanaman', 'lama_pupuk', 'status_pupuk'];
 
     public function findPupuk_ke($id_tanaman)
     {

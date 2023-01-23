@@ -76,11 +76,25 @@
         <?php foreach ($data_pupuk_mari_tanam  as $marpuks) : ?>
             var id_pupuk = "<?= $marpuks['id_pupuk']; ?>";
             var lama = "<?= $marpuks['lama_pupuk']; ?>";
-            pemPuk(id_pupuk, lama, dariTanggal);
+            var status = "<?= $marpuks['status_pupuk']; ?>";
+            var waktu_pupuk = "<?= $marpuks['waktu_pupuk']; ?>";
+            pemPuk(id_pupuk, lama, status, waktu_pupuk);
         <?php endforeach ?>
     }
 
-    function pemPuk(id_pupuk, lama) {
+    function pemPuk(id_pupuk, lama, status, waktu_pupuk) {
+        if (waktu_pupuk == "Hari") {
+            lama = lama;
+        } else if (waktu_pupuk == "Minggu") {
+            lama = lama * 7;
+        } else if (waktu_pupuk == "Bulan") {
+            lama = lama * 30;
+        } else if (waktu_pupuk == "Tahun") {
+            lama = lama * 365;
+        } else {
+            lama = 0;
+        }
+
         var dariTanggal = document.getElementById('dari-tanggal').value;
         var pemPupuk = document.getElementById('pem-puk-' + id_pupuk);
         var date = new Date(Date.parse(dariTanggal));
@@ -90,11 +104,18 @@
         pemPupuk.value = date.toISOString().slice(0, 10);
 
         var now = new Date();
-        if (Date.parse(pemPupuk.value) > now) {
-            // butto.innerHTML = `<button class="btn btn-primary">Diberikan</button>`;
-            butto.innerHTML = `<td><button class="btn btn-primary">Diberikan</button> <button class="btn btn-danger">Tidak</button></td>`;
+        if (Date.parse(pemPupuk.value) > now && status == 1) {
+            butto.innerHTML = `<button class="btn btn-primary">Diberikan</button>`;
+        } else if (Date.parse(pemPupuk.value) > now && status == 2) {
+            butto.innerHTML = `<button class="btn btn-danger">Tidak Diberikan</button>`;
+        } else if (Date.parse(pemPupuk.value) < now && status == 2) {
+            butto.innerHTML = `<button class="btn btn-danger">Tidak Diberikan</button>`;
+        } else if (Date.parse(pemPupuk.value) < now && status == 1) {
+            butto.innerHTML = `<button class="btn btn-primary">Diberikan</button>`;
         } else if (Date.parse(pemPupuk.value) < now) {
-            butto.innerHTML = `<td><button class="btn btn-danger">Terlambat</button></td>`;
+            butto.innerHTML = `<button class="btn btn-danger">Terlambat</button>`;
+        } else {
+            butto.innerHTML = `<a href="/update-pupuk/` + id_pupuk + `/1" class="btn btn-primary">Diberikan</a> <a href="/update-pupuk/` + id_pupuk + `/2" class="btn btn-danger">Tidak</a>`;
         }
     }
 </script>
