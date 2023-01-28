@@ -43,7 +43,7 @@
 
                             <tbody>
                                 <?php $no = 1;
-                                $tofay = date('Y-m-d');
+                                $today = date('Y-m-d');
                                 foreach ($data_saya_tanam as $saya_tanam) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
@@ -51,14 +51,14 @@
                                         <td><?= $saya_tanam['nama_tanaman']; ?></td>
                                         <td><?= $saya_tanam['dari_tanggal']; ?> </td>
                                         <td><?= $saya_tanam['perkiraan_panen']; ?> </td>
-                                        <?php if (strtotime($saya_tanam['perkiraan_panen']) < strtotime(date('Y-m-d'))) { ?>
+                                        <?php if (strtotime($saya_tanam['perkiraan_panen']) > strtotime($today)) { ?>
                                             <td>
                                                 <div style="background-color: green; border-radius: 50px; text-align: center; color: white;">Dalam Masa Budidaya</div>
                                             </td>
                                             <td>
                                                 <a href="/detail/<?= $saya_tanam['id_mari_tanam']; ?>/<?= $saya_tanam['id_tanaman']; ?>" class="btn" title="Klik Untuk Melihat Cara Budidaya">Detail</a>
                                             </td>
-                                        <?php } else if (strtotime($saya_tanam['perkiraan_panen']) > strtotime(date('Y-m-d'))) { ?>
+                                        <?php } else if (strtotime($saya_tanam['perkiraan_panen']) < strtotime(date('Y-m-d'))) { ?>
                                             <td>
                                                 <div style="background-color: red; border-radius: 50px; text-align: center; color: white;">Tanaman Selesai Budidaya (Silahkan Panen!!)</div>
                                             </td>

@@ -18,6 +18,7 @@ $routes->get('/', 'Main::index');
 $routes->get('/tanaman', 'Main::tanaman');
 $routes->get('/article/(:num)', 'Main::article/$1');
 $routes->get('/cara/(:num)', 'Main::cara/$1');
+$routes->get('/search', 'Main::search');
 
 // user login
 $routes->get('/mari-tanam', 'User\Users::mariTanam');

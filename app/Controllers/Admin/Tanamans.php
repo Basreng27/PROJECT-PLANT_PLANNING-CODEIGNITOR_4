@@ -123,7 +123,9 @@ class Tanamans extends BaseController
         // cek jika file gambar default
         if ($tanaman['image_tanaman'] != 'default.jpg') {
             //hapus gambar dalam folder
-            unlink('tanam/' . $tanaman['image_tanaman']);
+            if (!empty($tanaman['image_tanaman'])) {
+                unlink('tanam/' . $tanaman['image_tanaman']);
+            }
         }
 
         $this->TanamansModel->delete($id); //menghapus data didatabase

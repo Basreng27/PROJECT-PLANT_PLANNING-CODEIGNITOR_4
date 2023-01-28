@@ -34,7 +34,7 @@
                                         Pupuk Ke :
                                     </div>
                                     <div class="col-sm-3">
-                                        Lama :
+                                        Setelah Tanaman ditanam :
                                     </div>
                                     <div class="col-sm-3">
                                     </div>
@@ -96,9 +96,11 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
+                                    <label>Lama</label>
                                     <input type="number" class="form-control" name="lama_pupuk" autofocus required>
                                 </div>
                                 <div class="col-sm-6">
+                                    <label>Waktu</label>
                                     <select class="custom-select" name="waktu_pupuk">
                                         <option value="Hari">Hari</option>
                                         <option value="Minggu">Minggu</option>

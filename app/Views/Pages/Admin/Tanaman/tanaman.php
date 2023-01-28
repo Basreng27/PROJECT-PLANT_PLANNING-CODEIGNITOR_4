@@ -157,7 +157,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <select class="custom-select" name="musim">
-                                    <option value="Semua">Semua Musim</option>
+                                    <option value="Semua Musim">Semua Musim</option>
                                     <option value="Hujan">Hujan</option>
                                     <option value="Kemarau">Kemarau</option>
                                 </select>
@@ -209,7 +209,7 @@
                                 <div class="invalid-feedback"><?= $validation->getError('image_tanaman'); ?></div>
                                 <label class="custom-file-label" for="exampleInputFile">Pilih file untuk diupdate</label>
                             </div>
-                            <img src="/set_admin/<?= $tanamane['image_tanaman']; ?>" class="img-thumbnail img-preview">
+                            <img src="/tanam/<?= $tanamane['image_tanaman']; ?>" alt="Not Found" class="img-thumbnail img-preview">
                         </div>
 
                         <div class="form-group">
@@ -238,7 +238,7 @@
                                 <div class="col-sm-4">
                                     <select class="custom-select" name="musim">
                                         <option value="<?= !empty($tanamane['musim']) ? $tanamane['musim'] : '' ?>"><?= !empty($tanamane['musim']) ? $tanamane['musim'] : '' ?></option>
-                                        <option value="Semua">Semua Musim</option>
+                                        <option value="Semua Musim">Semua Musim</option>
                                         <option value="Hujan">Hujan</option>
                                         <option value="Kemarau">Kemarau</option>
                                     </select>

@@ -53,4 +53,11 @@ class Main extends BaseController
 
         return view('Pages/User/cara', $data);
     }
+
+    public function search()
+    {
+        $keyword = $this->request->getVar('keyword');;
+        $data = $this->TanamanModel->like(['nama_tanaman' => $keyword])->findAll();
+        return json_encode($data);
+    }
 }
