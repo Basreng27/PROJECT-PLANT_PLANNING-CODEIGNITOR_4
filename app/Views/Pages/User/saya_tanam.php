@@ -2,7 +2,6 @@
 
 <?= $this->section('content_user'); ?>
 <div class="container-xl">
-    <!-- Page title -->
     <div class="page-header d-print-none">
         <div class="row g-2 align-items-center">
             <div class="col">
@@ -13,12 +12,6 @@
         </div>
     </div>
 </div>
-
-<?php /*if (session()->getFlashdata('gagal')) { ?>
-    <div class="alert alert-danger" role="alert">
-        Product gagal dicheckout
-    </div>
-<?php } */ ?>
 
 <div class="page-body">
     <div class="container-xl">

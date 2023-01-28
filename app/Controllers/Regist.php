@@ -20,7 +20,7 @@ class Regist extends BaseController
             'gagal' => '',
         ];
 
-        return view('Pages/Static/login_regist/regist');
+        return view('Pages/Static/login_regist/regist', $data);
     }
 
     public function prosesRegist()

@@ -24,7 +24,6 @@
                         <div id="carousel-default" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <!-- <img class="d-block w-100" alt="" src="set_admin/<?php /*$set['logo']; */ ?>" height="300px" width="250px"> -->
                                     <img class="d-block w-100" alt="" src="set_admin/tanaman1.jpg" height="300px" width="250px">
                                 </div>
                                 <?php /*foreach ($data_reviews as $review) : */ ?>

@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Login Page</title>
     <!-- CSS files -->
-    <link href="assets/users/css/tabler.min.css" rel="stylesheet" />
-    <link href="assets/users/css/tabler-flags.min.css" rel="stylesheet" />
-    <link href="assets/users/css/tabler-payments.min.css" rel="stylesheet" />
-    <link href="assets/users/css/tabler-vendors.min.css" rel="stylesheet" />
-    <link href="assets/users/css/demo.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/demo.min.css" rel="stylesheet" />
 </head>
 
 <body class=" border-top-wide border-primary d-flex flex-column">
@@ -66,10 +66,8 @@
 
         </div>
     </div>
-    <!-- Libs JS -->
-    <!-- Tabler Core -->
-    <script src="assets/users/js/tabler.min.js" defer></script>
-    <script src="assets/users/js/demo.min.js" defer></script>
+    <script src="<?= base_url() ?>/assets/users/js/tabler.min.js" defer></script>
+    <script src="<?= base_url() ?>/assets/users/js/demo.min.js" defer></script>
 </body>
 
 </html>

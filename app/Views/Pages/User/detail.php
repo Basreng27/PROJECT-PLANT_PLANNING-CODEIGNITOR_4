@@ -14,12 +14,6 @@
     </div>
 </div>
 
-<?php /*if (session()->getFlashdata('gagal')) { ?>
-    <div class="alert alert-danger" role="alert">
-        Product gagal dicheckout
-    </div>
-<?php } */ ?>
-
 <div class="page-body">
     <div class="container-xl">
         <div class="row row-cards">
@@ -67,10 +61,6 @@
 </div>
 
 <script>
-    // window.onload = function() {
-    //     pemPuk(id_pupuk, lama);
-    // }
-
     window.onload = function() {
         var dariTanggal = "<?= $dari_tanggal; ?>";
         <?php foreach ($data_pupuk_mari_tanam  as $marpuks) : ?>

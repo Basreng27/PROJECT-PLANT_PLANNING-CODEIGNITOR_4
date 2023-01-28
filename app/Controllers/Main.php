@@ -16,11 +16,6 @@ class Main extends BaseController
 
     public function index()
     {
-        // $data = [
-        //     'data_reviews' => $this->ReviewModel->findAll(),
-        //     'set' => $this->Set_dashboardModel->find(1)
-        // ];
-
         return view('Pages/User/home');
     }
 
@@ -28,7 +23,6 @@ class Main extends BaseController
     {
         $data = [
             'data_tanaman' => $this->TanamanModel->findAll(),
-            // 'set' => $this->Set_dashboardModel->find(1)
         ];
 
         return view('Pages/User/tanaman', $data);
@@ -38,7 +32,6 @@ class Main extends BaseController
     {
         $data = [
             'data_artikel' => $this->TanamanModel->tanamanXartikel($id_tanaman),
-            // 'set' => $this->Set_dashboardModel->find(1)
         ];
 
         return view('Pages/User/article', $data);
@@ -48,7 +41,6 @@ class Main extends BaseController
     {
         $data = [
             'data_artikel' => $this->TanamanModel->tanamanXbudidaya($id_tanaman),
-            // 'set' => $this->Set_dashboardModel->find(1)
         ];
 
         return view('Pages/User/cara', $data);

@@ -54,7 +54,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="/admin-madu" class="brand-link">
-                <img src="set_admin/tanaman1.jgp" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="<?= base_url() ?>/set_admin/tanaman1.jpg" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Penjadwalan Tanaman</span>
             </a>
 
