@@ -13,32 +13,31 @@
         </div>
     </div>
 
-    <?php if (session()->getFlashdata('berhasil')) { ?>
-        <div class="alert alert-success" role="alert">
-            Tanaman Berhasil ditambahkan
-        </div>
-    <?php } ?>
-
-    <?php if (session()->getFlashdata('berhasilUpdate')) { ?>
-        <div class="alert alert-success" role="alert">
-            Tanaman Berhasil diupdate
-        </div>
-    <?php } ?>
-
-    <?php if (session()->getFlashdata('delete')) { ?>
-        <div class="alert alert-success" role="alert">
-            Tanaman Berhasil didelete
-        </div>
-    <?php } ?>
-
-    <?php if (session()->getFlashdata('gagal')) { ?>
-        <div class="alert alert-danger" role="alert">
-            Tanaman gagal ditambahkan
-        </div>
-    <?php }  ?>
-
     <section class="content">
         <div class="container-fluid">
+            <?php if (session()->getFlashdata('berhasil')) { ?>
+                <div class="alert alert-success" role="alert">
+                    Tanaman Berhasil ditambahkan
+                </div>
+            <?php } ?>
+
+            <?php if (session()->getFlashdata('berhasilUpdate')) { ?>
+                <div class="alert alert-success" role="alert">
+                    Tanaman Berhasil diupdate
+                </div>
+            <?php } ?>
+
+            <?php if (session()->getFlashdata('delete')) { ?>
+                <div class="alert alert-success" role="alert">
+                    Tanaman Berhasil didelete
+                </div>
+            <?php } ?>
+
+            <?php if (session()->getFlashdata('gagal')) { ?>
+                <div class="alert alert-danger" role="alert">
+                    Tanaman gagal ditambahkan
+                </div>
+            <?php }  ?>
             <div class="row">
                 <div class="col-12">
                     <div class="card">

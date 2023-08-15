@@ -29,6 +29,7 @@
                                     <th>Nama Tanaman</th>
                                     <th>Dari</th>
                                     <th>Perkiraan Panen</th>
+                                    <th>Bibit Yang Ditanam</th>
                                     <th>Status</th>
                                     <th>Lihat Detail</th>
                                 </tr>
@@ -44,6 +45,7 @@
                                         <td><?= $saya_tanam['nama_tanaman']; ?></td>
                                         <td><?= $saya_tanam['dari_tanggal']; ?> </td>
                                         <td><?= $saya_tanam['perkiraan_panen']; ?> </td>
+                                        <td><?= $saya_tanam['bibit'] ?? '-' ?> </td>
                                         <?php if (strtotime($saya_tanam['perkiraan_panen']) > strtotime($today)) { ?>
                                             <td>
                                                 <div style="background-color: green; border-radius: 50px; text-align: center; color: white;">Dalam Masa Budidaya</div>

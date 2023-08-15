@@ -13,20 +13,21 @@
     </div>
 </div>
 
-<?php if (session()->getFlashdata('dari')) { ?>
-    <div class="alert alert-danger" role="alert">
-        Dari tanggal tidak boleh kosong
-    </div>
-<?php }  ?>
-
-<?php if (session()->getFlashdata('berhasil')) { ?>
-    <div class="alert alert-success" role="alert">
-        Data Berhasil di tambahkan, silahkan cek fitur Saya Tanam
-    </div>
-<?php }  ?>
 
 <div class="page-body">
     <div class="container-xl">
+        <?php if (session()->getFlashdata('dari')) { ?>
+            <div class="alert alert-danger" role="alert">
+                Dari tanggal tidak boleh kosong
+            </div>
+        <?php }  ?>
+
+        <?php if (session()->getFlashdata('berhasil')) { ?>
+            <div class="alert alert-success" role="alert">
+                Data Berhasil di tambahkan, silahkan cek fitur Saya Tanam
+            </div>
+        <?php }  ?>
+
         <div class="row row-cards">
 
             <div class="col-12">
@@ -100,6 +101,11 @@ foreach ($data_tanaman as $tanamanbud) : ?>
                         <div class="mb-3">
                             <label class="form-label">Perkiraan Panen</label>
                             <input type="date" id="perkiraan-panen-<?= $tanamanbud['id_tanaman'] ?>" class="form-control" name="perkiraan_panen" value="" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah Bibit Yang Ditanam (Satuan Bibit)</label>
+                            <input type="number" class="form-control" name="bibit">
                         </div>
                     </div>
 

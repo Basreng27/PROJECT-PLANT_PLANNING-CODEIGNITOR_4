@@ -9,7 +9,7 @@ class Mari_tanam_model extends Model
     protected $table = 'mari_tanam';
     protected $primaryKey = 'id_mari_tanam';
     protected $useTimestamps = false;
-    protected $allowedFields = ['dari_tanggal', 'perkiraan_panen', 'id_tanaman', 'id_user'];
+    protected $allowedFields = ['dari_tanggal', 'perkiraan_panen', 'id_tanaman', 'id_user', 'bibit'];
 
     public function tanamXsayatanam($id_user)
     {
