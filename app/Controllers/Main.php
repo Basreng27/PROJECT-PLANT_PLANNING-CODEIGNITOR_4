@@ -16,7 +16,9 @@ class Main extends BaseController
 
     public function index()
     {
-        return view('Pages/User/home');
+        $result['data_tanaman'] = $this->TanamanModel->findAll();
+
+        return view('Pages/User/home', $result);
     }
 
     public function tanaman()

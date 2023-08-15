@@ -22,8 +22,6 @@ class Users extends BaseController
         $data = [
             'validation' => \Config\Services::validation(),
             'data_tanaman' => $this->TanamanModel->findAll(),
-            // 'data_keranjang' => $this->KeranjangModel->getKeranjang(session()->get('id_user')),
-            // 'set' => $this->Set_dashboardModel->find(1)
         ];
 
         return view('Pages/User/mari_tanam', $data);
@@ -38,7 +36,6 @@ class Users extends BaseController
         $data = [
             'validation' => \Config\Services::validation(),
             'data_saya_tanam' => $this->MariTanamModel->tanamXsayatanam(session()->get('id_user')),
-            // 'set' => $this->Set_dashboardModel->find(1)
         ];
 
         return view('Pages/User/saya_tanam', $data);
@@ -54,7 +51,6 @@ class Users extends BaseController
             'validation' => \Config\Services::validation(),
             'data_pupuk_mari_tanam' => $this->MariTanamModel->sayatanamXtanamanXpupuk($id_mari_tanam),
             'tanaman' => $this->TanamanModel->find($id_tanaman),
-            // 'set' => $this->Set_dashboardModel->find(1)
         ];
 
         return view('Pages/User/detail', $data);

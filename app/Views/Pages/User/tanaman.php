@@ -15,11 +15,7 @@
 
 <div class="page-body">
     <div class="container-xl">
-        <!-- <form>
-            <input type="text" id="keyword" onkeyup="search()">
-        </form> -->
         <div class="row row-cards">
-            <!-- <div id="result"> -->
             <?php foreach ($data_tanaman as $tanaman) : ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="card">
@@ -35,23 +31,8 @@
                     </div>
                 </div>
             <?php endforeach ?>
-            <!-- </div> -->
         </div>
     </div>
 </div>
 
-<!-- <script>
-    function search() {
-        $.ajax({
-            url: "/search",
-            type: "GET",
-            data: {
-                keyword: $("#keyword").val()
-            },
-            success: function(response) {
-                $("#result").html(response);
-            }
-        });
-    }
-</script> -->
 <?= $this->endSection(); ?>
