@@ -1,12 +1,5 @@
 <?= $this->extend('Pages\Static\Layout_users\layout_users'); ?>
-<style>
-    .limited-lines {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-</style>
+
 <?= $this->section('content_user'); ?>
 
 <div class="page-body">

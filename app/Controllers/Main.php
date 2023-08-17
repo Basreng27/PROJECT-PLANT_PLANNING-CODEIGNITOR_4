@@ -16,7 +16,7 @@ class Main extends BaseController
 
     public function index()
     {
-        $result['data_tanaman'] = $this->TanamanModel->findAll();
+        $result['data_tanaman'] = $this->TanamanModel->orderBy('RAND()')->findAll(3);
 
         return view('Pages/User/home', $result);
     }

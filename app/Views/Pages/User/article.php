@@ -6,7 +6,7 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    <?= $data_artikel[0]['nama_tanaman']; ?>
+                    Artikel
                 </h2>
             </div>
         </div>
@@ -15,8 +15,22 @@
 
 <div class="page-body">
     <div class="container-xl">
-        <img src="<?= base_url() ?>/tanam/<?= $data_artikel[0]['image_tanaman']; ?>">
-        <?= $data_artikel[0]['isi_artikel']; ?>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="<?= base_url() ?>/tanam/<?= $data_artikel[0]['image_tanaman']; ?>">
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center" style="font-weight: bold;">
+                        <h1><?= $data_artikel[0]['nama_tanaman']; ?></h1>
+                    </div>
+                </div>
+
+                <div>
+                    <?= $data_artikel[0]['isi_artikel']; ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <?= $this->endSection(); ?>

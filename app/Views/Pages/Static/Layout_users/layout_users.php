@@ -13,10 +13,18 @@
     <link href="<?= base_url() ?>/assets/users/css/tabler-vendors.min.css" rel="stylesheet" />
     <link href="<?= base_url() ?>/assets/users/css/demo.min.css" rel="stylesheet" />
     <link href="<?= base_url() ?>/assets/users/css/demo.css" rel="stylesheet" />
-    <!-- <link href="<?= base_url() ?>/assets/users/css/font-awesome.min.css" rel="stylesheet" /> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
+<style>
+    .limited-lines {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
 
 <body>
     <div class="page">
@@ -25,7 +33,7 @@
 
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                     <a href=".">
-                        <img src="<?= base_url() ?>/set_admin/tanaman1.jpg<?php /*$set['logo'];*/ ?>" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                        <img src="<?= base_url() ?>/set_admin/tanaman1.jpg" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
                     </a>
                 </h1>
 
@@ -56,9 +64,7 @@
                             <?php } ?>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </header>
 
@@ -92,7 +98,6 @@
                                 </a>
                             </li>
 
-                            <?php /* if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { */ ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="/mari-tanam">
                                     <span class="nav-link-title">
@@ -100,23 +105,6 @@
                                     </span>
                                 </a>
                             </li>
-                            <?php /*}*/ ?>
-
-                            <?php
-
-                            // use App\Models\No_wa_model;
-
-                            // $this->No_waModel = new No_wa_model();
-                            // $no = $this->No_waModel->find(1); 
-                            ?>
-
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="https://api.whatsapp.com/send?phone=<?php /*$no['no_wa'] */ ?>" target="_blank">
-                                    <span class="nav-link-title">
-                                        Hubungi Kami
-                                    </span>
-                                </a>
-                            </li> -->
                         </ul>
 
                     </div>
@@ -124,15 +112,7 @@
             </div>
         </div>
 
-        <!-- <div style="position: fixed; bottom: 50px; right: 50px; z-index: 99;">
-            <a href="https://api.whatsapp.com/send?phone=<?php /* $no['no_wa']*/ ?>" target="_blank" rel="noopener">
-                <img src="<?php /* base_url('set_admin/WA-logo@65x.png');*/ ?>" width="65" height="66" alt="Hubungi Kami Melalui WhatsApp"></a>
-            </a>
-            </a>
-        </div> -->
-
         <div class="page-wrapper">
-
             <?= $this->renderSection('content_user'); ?>
 
             <footer class="footer footer-transparent d-print-none">
