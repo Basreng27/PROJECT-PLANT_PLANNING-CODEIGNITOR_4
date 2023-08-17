@@ -50,6 +50,7 @@ class Users extends BaseController
         $data = [
             'validation' => \Config\Services::validation(),
             'data_pupuk_mari_tanam' => $this->MariTanamModel->sayatanamXtanamanXpupuk($id_mari_tanam),
+            'data_semprot_mari_tanam' => $this->MariTanamModel->sayatanamXtanamanXsemprot($id_mari_tanam),
             'tanaman' => $this->TanamanModel->find($id_tanaman),
         ];
 

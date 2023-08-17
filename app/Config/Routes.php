@@ -53,6 +53,10 @@ $routes->get('/tanaman-pupuk/(:num)', 'Admin\Admins::tanamanPupuk/$1');
 $routes->post('/tambah-pupuk', 'Admin\Pupuks::prosesTambahPupuk');
 $routes->post('/delete-pupuk', 'Admin\Pupuks::prosesDeletePupuk');
 $routes->get('/update-pupuk/(:num)/(:num)', 'Admin\Pupuks::prosesUpdatePupuk/$1/$2');
+$routes->get('/tanaman-semprot/(:num)', 'Admin\Admins::tanamanSemprot/$1');
+$routes->post('/tambah-semprot', 'Admin\Semprot::prosesTambahSemprot');
+$routes->post('/delete-semprot', 'Admin\Semprot::prosesDeleteSemprot');
+$routes->get('/update-semprot/(:num)/(:num)', 'Admin\Semprot::prosesUpdateSemprot/$1/$2');
 
 // User
 $routes->post('/save-tanam', 'User\Mari_tanam::prosesSaveTanam');

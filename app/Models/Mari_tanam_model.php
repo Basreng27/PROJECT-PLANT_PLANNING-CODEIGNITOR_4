@@ -28,4 +28,14 @@ class Mari_tanam_model extends Model
 
         return $this->find();
     }
+
+    public function sayatanamXtanamanXsemprot($id_mari_tanam)
+    {
+        $this->join('tanamans', 'mari_tanam.id_tanaman = tanamans.id_tanaman', 'left');
+        $this->join('semprot', 'tanamans.id_tanaman = semprot.id_tanaman', 'left');
+        $this->where(['id_mari_tanam' => $id_mari_tanam]);
+        $this->orderBy('semprot.semprot_ke');
+
+        return $this->find();
+    }
 }

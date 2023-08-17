@@ -16,7 +16,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <img src="set_admin/tanaman1.jpg" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8; display:block; margin:auto;" height="150" width="150">
+                <img src="set_admin/tanaman1.jpg" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8; display:block; margin:auto;" height="250" width="250">
             </div>
             <br>
             <div class="card">
