@@ -22,6 +22,7 @@ class Users extends BaseController
         $data = [
             'validation' => \Config\Services::validation(),
             'data_tanaman' => $this->TanamanModel->findAll(),
+            'rekomendasi' => $this->TanamanModel->rekomendasiTanaman(),
         ];
 
         return view('Pages/User/mari_tanam', $data);

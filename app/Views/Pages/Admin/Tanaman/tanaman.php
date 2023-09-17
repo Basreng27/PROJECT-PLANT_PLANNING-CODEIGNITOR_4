@@ -62,6 +62,7 @@
                                         <th>Musim</th>
                                         <th>Article</th>
                                         <th>Cara Budidaya</th>
+                                        <th>Rekomendasi Penanaman Dibulan</th>
                                         <th>Keterangan</th>
                                         <th>Action</th>
                                     </tr>
@@ -89,6 +90,7 @@
                                             <?php } else { ?>
                                                 <td><a href="/tanaman-budidaya/<?= $tanaman['id_tanaman_tanaman']; ?>" class="btn btn-info">Tambah Budidaya</a></td>
                                             <?php } ?>
+                                            <td><?= $tanaman['dari_bulan']; ?> s/d <?= $tanaman['sampai_bulan']; ?></td>
                                             <td><?= $tanaman['keterangan']; ?></td>
                                             <td>
                                                 <a href="#" class="btn btn-info" data-bs-toggle="modal" data-toggle="modal" data-target="#modal-edit<?= $tanaman['id_tanaman_tanaman']; ?>">Edit</a>
@@ -144,6 +146,7 @@
                                 <label for="exampleInputEmail1">Ditanam dimusim</label>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-sm-4">
                                 <input type="number" class="form-control <?= ($validation->hasError('lama')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="lama" value="<?= old('lama'); ?>" autofocus>
@@ -162,6 +165,48 @@
                                     <option value="Semua Musim">Semua Musim</option>
                                     <option value="Hujan">Hujan</option>
                                     <option value="Kemarau">Kemarau</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5">Dari Bulan</div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-5">Sampai Bulan</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <select name="dari_bulan" class="form-control">
+                                    <option value="Januari">Januari</option>
+                                    <option value="Februari">Februari</option>
+                                    <option value="Maret">Maret</option>
+                                    <option value="April">April</option>
+                                    <option value="Mei">Mei</option>
+                                    <option value="Juni">Juni</option>
+                                    <option value="Juli">Juli</option>
+                                    <option value="Agustus">Agustus</option>
+                                    <option value="September">September</option>
+                                    <option value="Oktober">Oktober</option>
+                                    <option value="November">November</option>
+                                    <option value="Desember">Desember</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 text-center">S/D</div>
+                            <div class="col-sm-5">
+                                <select name="sampai_bulan" class="form-control">
+                                    <option value="Januari">Januari</option>
+                                    <option value="Februari">Februari</option>
+                                    <option value="Maret">Maret</option>
+                                    <option value="April">April</option>
+                                    <option value="Mei">Mei</option>
+                                    <option value="Juni">Juni</option>
+                                    <option value="Juli">Juli</option>
+                                    <option value="Agustus">Agustus</option>
+                                    <option value="September">September</option>
+                                    <option value="Oktober">Oktober</option>
+                                    <option value="November">November</option>
+                                    <option value="Desember">Desember</option>
                                 </select>
                             </div>
                         </div>
@@ -237,12 +282,57 @@
                                         <option value="Tahun">Tahun</option>
                                     </select>
                                 </div>
+
                                 <div class="col-sm-4">
                                     <select class="custom-select" name="musim">
                                         <option value="<?= !empty($tanamane['musim']) ? $tanamane['musim'] : '' ?>"><?= !empty($tanamane['musim']) ? $tanamane['musim'] : '' ?></option>
                                         <option value="Semua Musim">Semua Musim</option>
                                         <option value="Hujan">Hujan</option>
                                         <option value="Kemarau">Kemarau</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-5">Dari Bulan</div>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5">Sampai Bulan</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <select name="dari_bulan" class="form-control">
+                                        <option value="<?= $tanamane['dari_bulan'] ?? '' ?>"><?= $tanamane['dari_bulan'] ?? '' ?></option>
+                                        <option value="Januari">Januari</option>
+                                        <option value="Februari">Februari</option>
+                                        <option value="Maret">Maret</option>
+                                        <option value="April">April</option>
+                                        <option value="Mei">Mei</option>
+                                        <option value="Juni">Juni</option>
+                                        <option value="Juli">Juli</option>
+                                        <option value="Agustus">Agustus</option>
+                                        <option value="September">September</option>
+                                        <option value="Oktober">Oktober</option>
+                                        <option value="November">November</option>
+                                        <option value="Desember">Desember</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 text-center">S/D</div>
+                                <div class="col-sm-5">
+                                    <select name="sampai_bulan" class="form-control">
+                                        <option value="<?= $tanamane['sampai_bulan'] ?? '' ?>"><?= $tanamane['sampai_bulan'] ?? '' ?></option>
+                                        <option value="Januari">Januari</option>
+                                        <option value="Februari">Februari</option>
+                                        <option value="Maret">Maret</option>
+                                        <option value="April">April</option>
+                                        <option value="Mei">Mei</option>
+                                        <option value="Juni">Juni</option>
+                                        <option value="Juli">Juli</option>
+                                        <option value="Agustus">Agustus</option>
+                                        <option value="September">September</option>
+                                        <option value="Oktober">Oktober</option>
+                                        <option value="November">November</option>
+                                        <option value="Desember">Desember</option>
                                     </select>
                                 </div>
                             </div>

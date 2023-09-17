@@ -62,6 +62,8 @@ class Tanamans extends BaseController
         $waktu = $this->request->getVar('waktu');
         $musim = $this->request->getVar('musim');
         $keterangan = $this->request->getVar('keterangan');
+        $dari_bulan = $this->request->getVar('dari_bulan');
+        $sampai_bulan = $this->request->getVar('sampai_bulan');
 
         //ambil iimage
         $imageTanaman = $this->request->getFile('image_tanaman');
@@ -98,6 +100,8 @@ class Tanamans extends BaseController
                 'waktu' => $waktu,
                 'musim' => $musim,
                 'keterangan' => $keterangan,
+                'dari_bulan' => $dari_bulan,
+                'sampai_bulan' => $sampai_bulan,
             ]);
         } else {
             $this->TanamansModel->save([
@@ -107,6 +111,8 @@ class Tanamans extends BaseController
                 'waktu' => $waktu,
                 'musim' => $musim,
                 'keterangan' => $keterangan,
+                'dari_bulan' => $dari_bulan,
+                'sampai_bulan' => $sampai_bulan,
             ]);
         }
 
