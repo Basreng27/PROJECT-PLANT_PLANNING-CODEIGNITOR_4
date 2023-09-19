@@ -38,9 +38,10 @@ class Tanamans_model extends Model
         return $this->findAll();
     }
 
-    public function rekomendasiTanaman()
+    public function rekomendasiTanaman($plus_month = null)
     {
         $month_now = date('m');
+        $plus_month ? $month_now = $month_now + $plus_month : $month_now = $month_now;
 
         switch ($month_now) {
             case "01":

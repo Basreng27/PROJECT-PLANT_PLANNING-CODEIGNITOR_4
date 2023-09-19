@@ -57,6 +57,9 @@
                                             <td>
                                                 <div style="background-color: red; border-radius: 50px; text-align: center; color: white;">Tanaman Selesai Budidaya (Silahkan Panen!!)</div>
                                             </td>
+                                            <td>
+                                                <a href="/rekomendasi" class="btn" title="Rekomendasi">Rekomendasi</a>
+                                            </td>
                                         <?php } ?>
                                     </tr>
                                 <?php endforeach ?>

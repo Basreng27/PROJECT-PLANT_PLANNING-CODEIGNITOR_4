@@ -61,6 +61,9 @@ $routes->get('/update-semprot/(:num)/(:num)', 'Admin\Semprot::prosesUpdateSempro
 // User
 $routes->post('/save-tanam', 'User\Mari_tanam::prosesSaveTanam');
 
+// rekomendasi
+$routes->get('/rekomendasi', 'User\Users::rekomendasi');
+
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

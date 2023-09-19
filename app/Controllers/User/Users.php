@@ -57,4 +57,14 @@ class Users extends BaseController
 
         return view('Pages/User/detail', $data);
     }
+
+    public function rekomendasi()
+    {
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'rekomendasi' => $this->TanamanModel->rekomendasiTanaman(1),
+        ];
+
+        return view('Pages/User/rekomendasi', $data);
+    }
 }

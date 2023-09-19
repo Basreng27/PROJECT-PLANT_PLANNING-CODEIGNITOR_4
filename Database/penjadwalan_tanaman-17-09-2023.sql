@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : LocalMySQL
+ Source Server         : LOCAL MySQL
  Source Server Type    : MySQL
- Source Server Version : 50733 (5.7.33)
+ Source Server Version : 80030 (8.0.30)
  Source Host           : localhost:3306
  Source Schema         : penjadwalan_tanaman
 
  Target Server Type    : MySQL
- Target Server Version : 50733 (5.7.33)
+ Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 28/01/2023 12:43:49
+ Date: 17/09/2023 08:52:55
 */
 
 SET NAMES utf8mb4;
@@ -22,12 +22,12 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins`  (
-  `id_admin` int(11) NOT NULL AUTO_INCREMENT,
+  `id_admin` int NOT NULL AUTO_INCREMENT,
   `nama_admin` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_admin`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of admins
@@ -39,13 +39,13 @@ INSERT INTO `admins` VALUES (1, 'Administrator', 'admin', '7b7bc2512ee1fedcd76bd
 -- ----------------------------
 DROP TABLE IF EXISTS `artikels`;
 CREATE TABLE `artikels`  (
-  `id_artikel` int(11) NOT NULL AUTO_INCREMENT,
+  `id_artikel` int NOT NULL AUTO_INCREMENT,
   `isi_artikel` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  `id_tanaman` int(11) NULL DEFAULT NULL,
+  `id_tanaman` int NULL DEFAULT NULL,
   PRIMARY KEY (`id_artikel`) USING BTREE,
-  INDEX `id_tanaman`(`id_tanaman`) USING BTREE,
+  INDEX `id_tanaman`(`id_tanaman` ASC) USING BTREE,
   CONSTRAINT `artikels_ibfk_1` FOREIGN KEY (`id_tanaman`) REFERENCES `tanamans` (`id_tanaman`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of artikels
@@ -60,13 +60,13 @@ INSERT INTO `artikels` VALUES (6, '<p>sad</p>', 7);
 -- ----------------------------
 DROP TABLE IF EXISTS `budidayas`;
 CREATE TABLE `budidayas`  (
-  `id_budidaya` int(11) NOT NULL AUTO_INCREMENT,
+  `id_budidaya` int NOT NULL AUTO_INCREMENT,
   `isi_budidaya` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  `id_tanaman` int(11) NULL DEFAULT NULL,
+  `id_tanaman` int NULL DEFAULT NULL,
   PRIMARY KEY (`id_budidaya`) USING BTREE,
-  INDEX `id_tanaman`(`id_tanaman`) USING BTREE,
+  INDEX `id_tanaman`(`id_tanaman` ASC) USING BTREE,
   CONSTRAINT `budidayas_ibfk_1` FOREIGN KEY (`id_tanaman`) REFERENCES `tanamans` (`id_tanaman`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of budidayas
@@ -84,90 +84,121 @@ INSERT INTO `budidayas` VALUES (8, '<p>dsfsdf</p>', 7);
 -- ----------------------------
 DROP TABLE IF EXISTS `mari_tanam`;
 CREATE TABLE `mari_tanam`  (
-  `id_mari_tanam` int(11) NOT NULL AUTO_INCREMENT,
+  `id_mari_tanam` int NOT NULL AUTO_INCREMENT,
   `dari_tanggal` date NULL DEFAULT NULL,
   `perkiraan_panen` date NULL DEFAULT NULL,
-  `id_tanaman` int(11) NULL DEFAULT NULL,
-  `id_user` int(11) NULL DEFAULT NULL,
+  `id_tanaman` int NULL DEFAULT NULL,
+  `id_user` int NULL DEFAULT NULL,
+  `bibit` int NULL DEFAULT NULL,
   PRIMARY KEY (`id_mari_tanam`) USING BTREE,
-  INDEX `id_tanaman`(`id_tanaman`) USING BTREE,
-  INDEX `id_user`(`id_user`) USING BTREE,
+  INDEX `id_tanaman`(`id_tanaman` ASC) USING BTREE,
+  INDEX `id_user`(`id_user` ASC) USING BTREE,
   CONSTRAINT `mari_tanam_ibfk_1` FOREIGN KEY (`id_tanaman`) REFERENCES `tanamans` (`id_tanaman`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `mari_tanam_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of mari_tanam
 -- ----------------------------
-INSERT INTO `mari_tanam` VALUES (3, '2023-01-23', '2023-02-20', 4, 2);
-INSERT INTO `mari_tanam` VALUES (4, '2022-01-23', '2023-02-20', 4, 2);
-INSERT INTO `mari_tanam` VALUES (5, '2023-01-23', '2023-05-23', 3, 2);
-INSERT INTO `mari_tanam` VALUES (6, '2023-01-23', '2023-05-23', 3, 2);
-INSERT INTO `mari_tanam` VALUES (7, '2023-01-28', '2023-04-28', 5, 3);
-INSERT INTO `mari_tanam` VALUES (8, '2023-01-28', '2023-02-02', 7, 3);
-INSERT INTO `mari_tanam` VALUES (9, '2023-01-28', '2023-04-28', 5, 2);
+INSERT INTO `mari_tanam` VALUES (3, '2023-01-23', '2023-02-20', 4, 2, NULL);
+INSERT INTO `mari_tanam` VALUES (4, '2022-01-23', '2023-02-20', 4, 2, NULL);
+INSERT INTO `mari_tanam` VALUES (5, '2023-01-23', '2023-05-23', 3, 2, NULL);
+INSERT INTO `mari_tanam` VALUES (6, '2023-01-23', '2023-05-23', 3, 2, NULL);
+INSERT INTO `mari_tanam` VALUES (7, '2023-01-28', '2023-04-28', 5, 3, NULL);
+INSERT INTO `mari_tanam` VALUES (8, '2023-01-28', '2023-02-02', 7, 3, NULL);
+INSERT INTO `mari_tanam` VALUES (9, '2023-01-28', '2023-04-28', 5, 2, NULL);
+INSERT INTO `mari_tanam` VALUES (10, '2023-08-16', '2023-12-14', 3, 2, NULL);
+INSERT INTO `mari_tanam` VALUES (11, '2023-08-17', '2023-12-15', 3, 2, NULL);
+INSERT INTO `mari_tanam` VALUES (12, '2023-08-19', '2023-12-17', 3, 2, 3343);
+INSERT INTO `mari_tanam` VALUES (13, '2023-08-25', '2023-08-30', 7, 2, 44);
 
 -- ----------------------------
 -- Table structure for pupuks
 -- ----------------------------
 DROP TABLE IF EXISTS `pupuks`;
 CREATE TABLE `pupuks`  (
-  `id_pupuk` int(11) NOT NULL AUTO_INCREMENT,
-  `pupuk_ke` int(11) NULL DEFAULT NULL,
+  `id_pupuk` int NOT NULL AUTO_INCREMENT,
+  `pupuk_ke` int NULL DEFAULT NULL,
   `waktu_pupuk` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `id_tanaman` int(11) NULL DEFAULT NULL,
-  `lama_pupuk` int(11) NULL DEFAULT NULL,
-  `status_pupuk` int(11) NULL DEFAULT NULL,
+  `id_tanaman` int NULL DEFAULT NULL,
+  `lama_pupuk` int NULL DEFAULT NULL,
+  `status_pupuk` int NULL DEFAULT NULL,
   PRIMARY KEY (`id_pupuk`) USING BTREE,
-  INDEX `id_tanaman`(`id_tanaman`) USING BTREE,
+  INDEX `id_tanaman`(`id_tanaman` ASC) USING BTREE,
   CONSTRAINT `pupuks_ibfk_1` FOREIGN KEY (`id_tanaman`) REFERENCES `tanamans` (`id_tanaman`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of pupuks
 -- ----------------------------
 INSERT INTO `pupuks` VALUES (1, 1, 'Hari', 3, 10, 1);
-INSERT INTO `pupuks` VALUES (2, 2, 'Hari', 3, 20, NULL);
+INSERT INTO `pupuks` VALUES (2, 2, 'Hari', 3, 20, 1);
 INSERT INTO `pupuks` VALUES (4, 6, 'Minggu', 3, 30, NULL);
-INSERT INTO `pupuks` VALUES (5, 5, 'Hari', 3, 40, NULL);
+INSERT INTO `pupuks` VALUES (5, 5, 'Hari', 3, 40, 2);
 INSERT INTO `pupuks` VALUES (6, 1, 'Hari', 5, 5, 1);
 INSERT INTO `pupuks` VALUES (7, 3, 'Hari', 5, 15, 1);
 INSERT INTO `pupuks` VALUES (8, 1, 'Hari', 7, 2, 1);
+INSERT INTO `pupuks` VALUES (9, 7, NULL, 3, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for semprot
+-- ----------------------------
+DROP TABLE IF EXISTS `semprot`;
+CREATE TABLE `semprot`  (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `semprot_ke` int NULL DEFAULT NULL,
+  `waktu` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `id_tanaman` int NULL DEFAULT NULL,
+  `lama` int NULL DEFAULT NULL,
+  `status` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `id_tanaman`(`id_tanaman` ASC) USING BTREE,
+  CONSTRAINT `semprot_ibfk_1` FOREIGN KEY (`id_tanaman`) REFERENCES `tanamans` (`id_tanaman`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of semprot
+-- ----------------------------
+INSERT INTO `semprot` VALUES (3, 1, 'Hari', 3, 12, 1);
+INSERT INTO `semprot` VALUES (4, 2, 'Hari', 3, 12, 2);
 
 -- ----------------------------
 -- Table structure for tanamans
 -- ----------------------------
 DROP TABLE IF EXISTS `tanamans`;
 CREATE TABLE `tanamans`  (
-  `id_tanaman` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tanaman` int NOT NULL AUTO_INCREMENT,
   `nama_tanaman` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `image_tanaman` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `lama` int(11) NULL DEFAULT NULL,
+  `lama` int NULL DEFAULT NULL,
   `waktu` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `musim` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `keterangan` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `dari_bulan` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `sampai_bulan` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_tanaman`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tanamans
 -- ----------------------------
-INSERT INTO `tanamans` VALUES (3, 'Tomat', '1673663785_e9794e7f1c1e24590937.jpg', 4, 'Bulan', 'Semua', 'Masa tanam 4 bulan ,untuk 10x panen. pemupukan sebelum tumbuh tomat 2x. Biasanya di tanam di bulan Agustus/september dan cocok di segala cuaca');
-INSERT INTO `tanamans` VALUES (4, 'Seledri', '1673663957_ff5346e29d2fdeb50af0.jpg', 4, 'Minggu', 'Semua', 'Masa tanam 4 bulan, waktu pemupukan tiap 2-3x biasanya ditanam cocok di tanam di bulan Desember dan cocok di cuaca apapun.');
-INSERT INTO `tanamans` VALUES (5, 'Bayam', '1674866344_f85133de3aef1ddea5cd.jpg', 3, 'Bulan', 'Semua', 'Benih untuk budidaya bayam disiapkan melalui perbanyakan biji. Benih diambiul dari tanaman bayam yang dipelihara hingga tua berumur sekitar 3 bulan. Apabila tanaman masih muda sudah diambil bijinya, daya simpan benih tidak lama dan tingkat perkecambahan r');
-INSERT INTO `tanamans` VALUES (7, 'bonteng merah', '1674870918_97e6bd015ad5c6514012.jpg', 5, 'Hari', 'Semua Musim', 'jhg');
+INSERT INTO `tanamans` VALUES (3, 'Tomat', '1673663785_e9794e7f1c1e24590937.jpg', 4, 'Bulan', 'Semua', 'Masa tanam 4 bulan ,untuk 10x panen. pemupukan sebelum tumbuh tomat 2x. Biasanya di tanam di bulan Agustus/september dan cocok di segala cuaca', 'Februari', 'Mei');
+INSERT INTO `tanamans` VALUES (4, 'Seledri', '1673663957_ff5346e29d2fdeb50af0.jpg', 4, 'Minggu', 'Semua', 'Masa tanam 4 bulan, waktu pemupukan tiap 2-3x biasanya ditanam cocok di tanam di bulan Desember dan cocok di cuaca apapun.', 'Agustus', 'September');
+INSERT INTO `tanamans` VALUES (5, 'Bayam', '1674866344_f85133de3aef1ddea5cd.jpg', 3, 'Bulan', 'Semua', 'Benih untuk budidaya bayam disiapkan melalui perbanyakan biji. Benih diambiul dari tanaman bayam yang dipelihara hingga tua berumur sekitar 3 bulan. Apabila tanaman masih muda sudah diambil bijinya, daya simpan benih tidak lama dan tingkat perkecambahan r', NULL, NULL);
+INSERT INTO `tanamans` VALUES (7, 'bonteng merah', '1674870918_97e6bd015ad5c6514012.jpg', 5, 'Hari', 'Semua Musim', 'jhg', 'September', 'Oktober');
+INSERT INTO `tanamans` VALUES (8, 'TEst', '1692236036_ac1eda200030878668a5.jpg', 123, 'Hari', 'Semua Musim', 'asd', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL AUTO_INCREMENT,
   `nama` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_user`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of users
